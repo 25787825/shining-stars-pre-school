@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Admin Portal | Shining Stars Pre School &amp; Academy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232B8FD8'/%3E%3Cpath d='M32 10l6.2 13.4 14.8 1.9-10.9 10.2 2.8 14.6L32 42.9 19.1 50.1l2.8-14.6L11 25.3l14.8-1.9z' fill='%23F4B41A'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#ECF6FD" stroke="#2B8FD8" stroke-width="3"/>
+          <path d="M32 12L37.8 24.4L51.4 26.2L41.4 35.6L44 49L32 42.4L20 49L22.6 35.6L12.6 26.2L26.2 24.4L32 12Z" fill="#F4B41A" stroke="#C88906" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="49" cy="17" r="3.5" fill="#EE6A59"/>
+          <circle cx="15" cy="19" r="2.5" fill="#2DA378"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Shining Stars</span>
+          <span class="brand-sub">Staff Admin Portal</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="about.html">About &amp; Faculty</a></li>
+          <li><a href="gallery.html">Campus Gallery</a></li>
+          <li><a href="events.html">News &amp; Events</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-outline btn-sm" href="index.html">&larr; Back to Site</a>
+        <button class="mobile-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Toggle navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Staff Admin Portal</span></div>
+        <h1>School Inquiries &amp; Subscribers Dashboard</h1>
+        <p>Sign in with your authorized Supabase staff account to view newsletter subscribers, contact messages, tour bookings, and admissions inquiries.</p>
+      </div>
+    </section>
+
+    <!-- Staff Login View -->
+    <section id="admin-auth-section" class="section">
+      <div class="container" style="max-width: 540px;">
+        <div class="form-card">
+          <span class="eyebrow sky">Protected Access</span>
+          <h2 style="margin-bottom: 0.4rem;">Staff Sign In</h2>
+          <p style="color: var(--muted); font-size: 0.94rem; margin-bottom: 1.4rem;">Protected by Supabase Authentication and Row-Level Security.</p>
+
+          <form id="admin-login-form" novalidate>
+            <div class="form-grid" style="grid-template-columns: 1fr;">
+              <div class="form-field">
+                <label for="admin-email">Staff Email Address</label>
+                <input id="admin-email" type="email" placeholder="principal@shiningstars.edu" required>
+              </div>
+              <div class="form-field">
+                <label for="admin-password">Password</label>
+                <input id="admin-password" type="password" placeholder="Enter your staff password" required>
+              </div>
+            </div>
+
+            <p id="admin-login-error" role="alert" style="display:none; color:#C94B3B; background:#FFE9E6; border:1px solid #EE6A59; border-radius:10px; padding:0.75rem 1rem; font-size:0.9rem; font-weight:600; margin:1rem 0 0;"></p>
+            <p id="admin-login-success" role="status" style="display:none; color:#166549; background:#E4F6EE; border:1px solid #2DA378; border-radius:10px; padding:0.75rem 1rem; font-size:0.9rem; font-weight:600; margin:1rem 0 0;"></p>
+
+            <div style="margin-top: 1.35rem; display: grid; gap: 0.75rem;">
+              <button class="btn btn-sky" type="submit" style="width: 100%;">Sign In to Staff Portal</button>
+              <button id="admin-forgot-btn" class="btn btn-outline btn-sm" type="button" style="width: 100%;">Forgot Password? Send 6-Digit Code</button>
+            </div>
+          </form>
+
+          <form id="admin-recovery-form" novalidate style="display: none;">
+            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 1rem;">
+              Enter the <strong>6-digit recovery code</strong> sent to your email along with your new password.
+            </p>
+            <div class="form-grid" style="grid-template-columns: 1fr;">
+              <div class="form-field">
+                <label for="admin-recovery-email">Staff Email Address</label>
+                <input id="admin-recovery-email" type="email" placeholder="principal@shiningstars.edu" required>
+              </div>
+              <div id="admin-otp-wrap" class="form-field">
+                <label for="admin-otp-code">6-Digit Recovery Code</label>
+                <input id="admin-otp-code" type="text" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" placeholder="e.g., 123456" autocomplete="one-time-code" required>
+              </div>
+              <div class="form-field">
+                <label for="admin-new-password">New Password (min 6 characters)</label>
+                <input id="admin-new-password" type="password" minlength="6" placeholder="Enter new staff password" required>
+              </div>
+            </div>
+            <p id="admin-recovery-status" role="status" style="display:none; border:1px solid; border-radius:10px; padding:0.75rem 1rem; font-size:0.9rem; font-weight:600; margin:1rem 0 0;"></p>
+            <div style="margin-top: 1.25rem; display: grid; gap: 0.75rem;">
+              <button class="btn btn-primary" type="submit" style="width: 100%;">Verify 6-Digit Code &amp; Save Password</button>
+              <button id="admin-back-login-btn" class="btn btn-outline btn-sm" type="button" style="width: 100%;">&larr; Back to Sign In</button>
+            </div>
+          </form>
+
+          <details style="margin-top: 1.5rem; font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem;">
+            <summary style="cursor: pointer; font-weight: 700; color: var(--navy);">First-time Admin Setup Instructions</summary>
+            <ol style="padding-left: 1.25rem; margin-top: 0.65rem; display: grid; gap: 0.45rem;">
+              <li>Run <code>supabase/schema.sql</code> in your Supabase SQL Editor.</li>
+              <li>Create your staff user in <strong>Supabase Dashboard &rarr; Authentication &rarr; Users &rarr; Add user</strong>.</li>
+              <li>Grant that user admin portal access in the SQL Editor:<br>
+                <code>insert into public.staff_admins (user_id, email) select id, email from auth.users where email = 'your-admin@email.com';</code>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authenticated Staff Dashboard View -->
+    <section id="admin-dashboard-section" class="section" style="display: none;" data-tab-group>
+      <div class="container">
+        <div class="admin-toolbar">
+          <div>
+            <span class="eyebrow mint">Authenticated Staff</span>
+            <h2 style="margin-bottom: 0.2rem;">Welcome, <span id="admin-user-email">Staff</span></h2>
+          </div>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button id="admin-refresh-btn" class="btn btn-outline btn-sm" type="button">↻ Refresh Data</button>
+            <button id="admin-signout-btn" class="btn btn-primary btn-sm" type="button">Sign Out</button>
+          </div>
+        </div>
+
+        <p id="admin-dashboard-notice" role="status" style="display:none; border:1px solid; border-radius:12px; padding:0.85rem 1.1rem; font-size:0.92rem; font-weight:600; margin-bottom:1.5rem;"></p>
+
+        <!-- Summary Cards -->
+        <div class="grid-4" style="margin-bottom: 2.25rem;">
+          <div class="card admin-stat-card">
+            <strong id="count-messages">0</strong>
+            <span>Contact Messages</span>
+          </div>
+          <div class="card admin-stat-card">
+            <strong id="count-subscribers">0</strong>
+            <span>Newsletter Subscribers</span>
+          </div>
+          <div class="card admin-stat-card">
+            <strong id="count-tours">0</strong>
+            <span>Campus Tour Bookings</span>
+          </div>
+          <div class="card admin-stat-card">
+            <strong id="count-applications">0</strong>
+            <span>Admissions Inquiries</span>
+          </div>
+        </div>
+
+        <!-- Tabs + Search -->
+        <div class="admin-toolbar">
+          <div class="filter-bar" role="tablist" aria-label="Admin data views" style="margin-bottom: 0;">
+            <button class="filter-btn active" type="button" role="tab" aria-selected="true" data-tab-target="admin-messages">Contact Messages</button>
+            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-subscribers">Newsletter Subscribers</button>
+            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-tours">Tour Bookings</button>
+            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-applications">Admissions Inquiries</button>
+          </div>
+          <input id="admin-search-input" class="admin-search" type="search" placeholder="Search by name, email, or reference..." aria-label="Search records">
+        </div>
+
+        <!-- Contact Messages Table -->
+        <div class="tab-panel active" data-tab-panel="admin-messages">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.75rem;">
+            <button id="export-messages-btn" class="btn btn-outline btn-sm" type="button">Export Contact Messages CSV</button>
+          </div>
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Sender</th>
+                  <th>Subject &amp; Message</th>
+                  <th>Status</th>
+                  <th>Received</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-messages">
+                <tr><td colspan="5">Loading contact messages...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Newsletter Subscribers Table -->
+        <div class="tab-panel" data-tab-panel="admin-subscribers">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.75rem;">
+            <button id="export-subscribers-btn" class="btn btn-outline btn-sm" type="button">Export Subscribers CSV</button>
+          </div>
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Subscriber Email</th>
+                  <th>Subscribed On</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-subscribers">
+                <tr><td colspan="3">Loading subscribers...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tour Bookings Table -->
+        <div class="tab-panel" data-tab-panel="admin-tours">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.75rem;">
+            <button id="export-tours-btn" class="btn btn-outline btn-sm" type="button">Export Tour Bookings CSV</button>
+          </div>
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Parent / Contact</th>
+                  <th>Child &amp; Program</th>
+                  <th>Preferred Date &amp; Notes</th>
+                  <th>Status</th>
+                  <th>Submitted</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-tours">
+                <tr><td colspan="6">Loading tour bookings...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admissions Applications Table -->
+        <div class="tab-panel" data-tab-panel="admin-applications">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.75rem;">
+            <button id="export-applications-btn" class="btn btn-outline btn-sm" type="button">Export Admissions CSV</button>
+          </div>
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Parent / Contact</th>
+                  <th>Student &amp; Program</th>
+                  <th>Previous School</th>
+                  <th>Status</th>
+                  <th>Submitted</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-applications">
+                <tr><td colspan="6">Loading admissions inquiries...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="padding-top: 0;">
+        <span>&copy; 2026 Shining Stars Pre School &amp; Academy. Staff Portal</span>
+        <a href="index.html" style="color: var(--gold-soft);">Return to Public Website &rarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

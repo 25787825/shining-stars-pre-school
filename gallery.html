@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Gallery &amp; Facilities | Shining Stars Pre School &amp; Academy</title>
+  <meta name="description" content="Tour Shining Stars Pre School &amp; Academy's sunlit Montessori classrooms, STEM &amp; robotics lab, library reading nook, and shaded outdoor playground.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232B8FD8'/%3E%3Cpath d='M32 10l6.2 13.4 14.8 1.9-10.9 10.2 2.8 14.6L32 42.9 19.1 50.1l2.8-14.6L11 25.3l14.8-1.9z' fill='%23F4B41A'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span class="announcement-pill">2026–2027 Admissions Open</span>
+      <span>Playgroup, Nursery, Kindergarten &amp; Primary Academy (Grades 1–5) — Limited seats available.</span>
+      <a class="announcement-link" href="admissions.html">Book a Campus Tour &rarr;</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#ECF6FD" stroke="#2B8FD8" stroke-width="3"/>
+          <path d="M32 12L37.8 24.4L51.4 26.2L41.4 35.6L44 49L32 42.4L20 49L22.6 35.6L12.6 26.2L26.2 24.4L32 12Z" fill="#F4B41A" stroke="#C88906" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="49" cy="17" r="3.5" fill="#EE6A59"/>
+          <circle cx="15" cy="19" r="2.5" fill="#2DA378"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Shining Stars</span>
+          <span class="brand-sub">Pre School &amp; Academy</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="about.html">About &amp; Faculty</a></li>
+          <li><a class="active" href="gallery.html">Campus Gallery</a></li>
+          <li><a href="events.html">News &amp; Events</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm" href="admissions.html">Book a Tour</a>
+        <button class="mobile-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Toggle navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Campus Gallery &amp; Facilities</span></div>
+        <h1>Explore Our Sunlit Campus &amp; Spaces</h1>
+        <p>Click any photo below to view it full screen, or filter by classrooms, STEM &amp; library spaces, and outdoor play.</p>
+      </div>
+    </section>
+
+    <!-- Facilities Highlights -->
+    <section class="section-tight bg-white">
+      <div class="container">
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon-box gold" aria-hidden="true">🏫</div>
+            <h3>Purpose-Built Classrooms</h3>
+            <p style="color: var(--muted); margin-bottom: 0;">Natural daylight, acoustic comfort, child-height birchwood shelves, and indoor air filtration in every room.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box sky" aria-hidden="true">🧪</div>
+            <h3>STEM Lab &amp; Library Nook</h3>
+            <p style="color: var(--muted); margin-bottom: 0;">Over 2,800 curated children’s titles plus age-appropriate robotics kits, microscopes, and smart boards.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box mint" aria-hidden="true">🌳</div>
+            <h3>Shaded Sensory Playground</h3>
+            <p style="color: var(--muted); margin-bottom: 0;">Soft safety turf, natural timber climbing playsets, tricycle track, and student-tended vegetable beds.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Filterable Photo Gallery -->
+    <section class="section" data-filter-group>
+      <div class="container">
+        <div class="filter-bar" role="group" aria-label="Filter gallery photos">
+          <button class="filter-btn active" type="button" data-filter-value="all">All Spaces</button>
+          <button class="filter-btn" type="button" data-filter-value="classrooms">Classrooms</button>
+          <button class="filter-btn" type="button" data-filter-value="stem-library">STEM &amp; Library</button>
+          <button class="filter-btn" type="button" data-filter-value="outdoor">Outdoor &amp; Play</button>
+        </div>
+
+        <div class="gallery-grid">
+          <button class="gallery-item" type="button" data-category="classrooms">
+            <img src="assets/images/hero-campus.jpg" alt="Sunlit collaborative classroom table with Montessori blocks and books">
+            <div class="gallery-caption">
+              <span>Classrooms</span>
+              <h3>Collaborative Discovery Room</h3>
+            </div>
+          </button>
+
+          <button class="gallery-item" type="button" data-category="classrooms">
+            <img src="assets/images/early-years.jpg" alt="Early Years Montessori preschool wing with pastel wooden toys and soft rugs">
+            <div class="gallery-caption">
+              <span>Classrooms</span>
+              <h3>Early Years Montessori Wing</h3>
+            </div>
+          </button>
+
+          <button class="gallery-item" type="button" data-category="stem-library">
+            <img src="assets/images/primary-stem.jpg" alt="Primary students working with robotics kits and science models in the STEM Lab">
+            <div class="gallery-caption">
+              <span>STEM &amp; Library</span>
+              <h3>Primary STEM &amp; Robotics Lab</h3>
+            </div>
+          </button>
+
+          <button class="gallery-item" type="button" data-category="outdoor">
+            <img src="assets/images/campus-playground.jpg" alt="Children enjoying the safe outdoor wooden playground and garden">
+            <div class="gallery-caption">
+              <span>Outdoor &amp; Play</span>
+              <h3>Shaded Garden Playground</h3>
+            </div>
+          </button>
+
+          <button class="gallery-item" type="button" data-category="stem-library">
+            <img src="assets/images/principal-library.jpg" alt="Warm sunlit school library filled with colorful storybooks">
+            <div class="gallery-caption">
+              <span>STEM &amp; Library</span>
+              <h3>Storybook Library &amp; Reading Nook</h3>
+            </div>
+          </button>
+
+          <button class="gallery-item" type="button" data-category="outdoor classrooms">
+            <img src="assets/images/hero-campus.jpg" alt="Morning welcome circle and creative arts corner at Shining Stars">
+            <div class="gallery-caption">
+              <span>Classrooms</span>
+              <h3>Kindergarten Art &amp; Circle Corner</h3>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <h2>See Our Classrooms Live in Person</h2>
+            <p>Walk the halls during a morning school day and observe our teachers and students in action.</p>
+          </div>
+          <a class="btn btn-gold" href="admissions.html">Schedule a Guided Tour</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="gallery-lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Campus photo preview">
+    <div class="lightbox-dialog">
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close preview">&times;</button>
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-footer">
+        <div>
+          <span id="lightbox-category" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--sky-dark);"></span>
+          <h3 id="lightbox-title" style="margin-bottom: 0; font-size: 1.2rem;"></h3>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="btn btn-outline btn-sm" type="button" data-lightbox-prev>&larr; Prev</button>
+          <button class="btn btn-outline btn-sm" type="button" data-lightbox-next>Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>★ Shining Stars Pre School &amp; Academy</h3>
+          <p style="font-size: 0.92rem;">A warm, inspiring learning community for ages 2–12, uniting joyful Montessori early years with an inquiry-driven Primary Academy.</p>
+          <p style="font-size: 0.88rem; margin-bottom: 0;">
+            📍 48 Sunshine Avenue, Greenview Enclave<br>
+            📞 (555) 234-8910 • ✉ admissions@shiningstars.edu
+          </p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="programs.html">Programs &amp; Curriculum</a></li>
+            <li><a href="about.html">About Us &amp; Faculty</a></li>
+            <li><a href="gallery.html">Campus Gallery</a></li>
+            <li><a href="events.html">News, Events &amp; FAQs</a></li>
+            <li><a href="admissions.html">Admissions &amp; Tour Booking</a></li>
+            <li><a href="admin.html">Staff Admin Portal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>School Hours</h4>
+          <ul class="footer-links">
+            <li>Playgroup &amp; Nursery: 8:30 AM – 12:30 PM</li>
+            <li>Kindergarten: 8:15 AM – 1:15 PM</li>
+            <li>Primary (Grades 1–5): 8:00 AM – 2:15 PM</li>
+            <li>After-School Care: Until 4:30 PM</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Monthly School Newsletter</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 0.4rem;">Get open-house reminders and parenting tips from our educators.</p>
+          <form class="newsletter-form" data-newsletter-form novalidate>
+            <label class="sr-only" for="footer-email-g">Email address</label>
+            <input id="footer-email-g" type="email" placeholder="parent@example.com" required>
+            <button class="btn btn-gold btn-sm" type="submit">Join</button>
+          </form>
+          <div class="newsletter-status" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Shining Stars Pre School &amp; Academy. All rights reserved.</span>
+        <span>Nurturing Bright Futures • Playgroup to Grade 5</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
