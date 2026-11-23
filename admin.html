@@ -8,19 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232B8FD8'/%3E%3Cpath d='M32 10l6.2 13.4 14.8 1.9-10.9 10.2 2.8 14.6L32 42.9 19.1 50.1l2.8-14.6L11 25.3l14.8-1.9z' fill='%23F4B41A'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/jpeg" href="assets/images/ssp-logo.jpg">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
-        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <circle cx="32" cy="32" r="30" fill="#ECF6FD" stroke="#2B8FD8" stroke-width="3"/>
-          <path d="M32 12L37.8 24.4L51.4 26.2L41.4 35.6L44 49L32 42.4L20 49L22.6 35.6L12.6 26.2L26.2 24.4L32 12Z" fill="#F4B41A" stroke="#C88906" stroke-width="2" stroke-linejoin="round"/>
-          <circle cx="49" cy="17" r="3.5" fill="#EE6A59"/>
-          <circle cx="15" cy="19" r="2.5" fill="#2DA378"/>
-        </svg>
+        <img class="brand-mark brand-logo-img" src="assets/images/ssp-logo.jpg" alt="Shining Stars — SSP Speech &amp; Hope Logo">
         <span class="brand-text">
           <span class="brand-name">Shining Stars</span>
           <span class="brand-sub">Staff Admin Portal</span>
@@ -31,6 +26,7 @@
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="programs.html">Programs</a></li>
+          <li><a href="ssp-speech-hope.html">SSP Speech &amp; Hope</a></li>
           <li><a href="about.html">About &amp; Faculty</a></li>
           <li><a href="gallery.html">Campus Gallery</a></li>
           <li><a href="events.html">News &amp; Events</a></li>
@@ -145,7 +141,7 @@
         <p id="admin-dashboard-notice" role="status" style="display:none; border:1px solid; border-radius:12px; padding:0.85rem 1.1rem; font-size:0.92rem; font-weight:600; margin-bottom:1.5rem;"></p>
 
         <!-- Summary Cards -->
-        <div class="grid-4" style="margin-bottom: 2.25rem;">
+        <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-bottom: 2.25rem;">
           <div class="card admin-stat-card">
             <strong id="count-messages">0</strong>
             <span>Contact Messages</span>
@@ -162,6 +158,10 @@
             <strong id="count-applications">0</strong>
             <span>Admissions Inquiries</span>
           </div>
+          <div class="card admin-stat-card">
+            <strong id="count-ssp">0</strong>
+            <span>SSP Speech &amp; Hope</span>
+          </div>
         </div>
 
         <!-- Tabs + Search -->
@@ -171,6 +171,7 @@
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-subscribers">Newsletter Subscribers</button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-tours">Tour Bookings</button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-applications">Admissions Inquiries</button>
+            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-ssp">SSP Speech &amp; Hope</button>
           </div>
           <input id="admin-search-input" class="admin-search" type="search" placeholder="Search by name, email, or reference..." aria-label="Search records">
         </div>
@@ -266,6 +267,115 @@
             </table>
           </div>
         </div>
+
+        <!-- SSP SPEECH & HOPE Category Manager -->
+        <div class="tab-panel" data-tab-panel="admin-ssp">
+          <div class="admin-toolbar" style="margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="margin-bottom: 0.2rem;">Manage SSP SPEECH &amp; HOPE Categories</h3>
+              <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0;">Add, edit, reorder, publish, or remove support service pages shown on the site.</p>
+            </div>
+            <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+              <button id="ssp-seed-btn" class="btn btn-outline btn-sm" type="button">Seed Default 8 Categories</button>
+              <button id="ssp-new-btn" class="btn btn-primary btn-sm" type="button">+ Add New Category</button>
+            </div>
+          </div>
+
+          <div id="ssp-editor-card" class="form-card" style="display: none; margin-bottom: 1.75rem;">
+            <div class="admin-toolbar" style="margin-bottom: 1rem;">
+              <h3 id="ssp-editor-heading" style="margin-bottom: 0;">Add New SSP Category</h3>
+              <button id="ssp-editor-cancel" class="btn btn-outline btn-sm" type="button">Cancel</button>
+            </div>
+            <form id="ssp-editor-form" novalidate>
+              <input id="ssp-edit-id" type="hidden">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="ssp-title">Category Title *</label>
+                  <input id="ssp-title" type="text" placeholder="e.g., Sensory Integration" required>
+                </div>
+                <div class="form-field">
+                  <label for="ssp-slug">URL Slug * (lowercase letters, numbers, hyphens)</label>
+                  <input id="ssp-slug" type="text" placeholder="e.g., sensory-integration" required>
+                </div>
+                <div class="form-field">
+                  <label for="ssp-badge">Badge Label *</label>
+                  <input id="ssp-badge" type="text" placeholder="e.g., Focus &amp; Regulation" required>
+                </div>
+                <div class="form-field">
+                  <label for="ssp-accent">Card Accent Color *</label>
+                  <select id="ssp-accent" required>
+                    <option value="gold">Sunny Gold</option>
+                    <option value="sky">Sky Blue</option>
+                    <option value="coral">Warm Coral</option>
+                    <option value="mint">Mint Leaf</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="ssp-icon">Icon / Emoji</label>
+                  <input id="ssp-icon" type="text" maxlength="8" placeholder="e.g., ⚡ or ★" value="★">
+                </div>
+                <div class="form-field">
+                  <label for="ssp-format">Session Format / Age Tag</label>
+                  <input id="ssp-format" type="text" placeholder="1-on-1 &amp; Small Group • Ages 2–12">
+                </div>
+                <div class="form-field">
+                  <label for="ssp-order">Display Order</label>
+                  <input id="ssp-order" type="number" min="1" value="9">
+                </div>
+                <div class="form-field" style="justify-content: center;">
+                  <label style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem; cursor: pointer;">
+                    <input id="ssp-published" type="checkbox" checked style="width: auto;">
+                    <span>Published on Public Website</span>
+                  </label>
+                </div>
+                <div class="form-field full">
+                  <label for="ssp-summary">Card Summary * (shown on clickable card)</label>
+                  <textarea id="ssp-summary" rows="2" placeholder="Concise 1–2 sentence description for the clickable card..." required></textarea>
+                </div>
+                <div class="form-field full">
+                  <label for="ssp-hero-subtitle">Dedicated Page Subtitle</label>
+                  <input id="ssp-hero-subtitle" type="text" placeholder="Inspiring subtitle shown in the dedicated page hero">
+                </div>
+                <div class="form-field full">
+                  <label for="ssp-overview">Dedicated Page Overview</label>
+                  <textarea id="ssp-overview" rows="3" placeholder="Detailed overview of how Shining Stars / SSP Speech &amp; Hope supports children in this category..."></textarea>
+                </div>
+                <div class="form-field full">
+                  <label for="ssp-who">Who This Service Supports</label>
+                  <textarea id="ssp-who" rows="2" placeholder="Ages, learning profiles, or needs this service addresses..."></textarea>
+                </div>
+                <div class="form-field full">
+                  <label for="ssp-strategies">Support Strategies (one bullet per line)</label>
+                  <textarea id="ssp-strategies" rows="4" placeholder="Strategy 1&#10;Strategy 2&#10;Strategy 3"></textarea>
+                </div>
+                <div class="form-field full">
+                  <label for="ssp-parent-tips">Home &amp; Family Guidance Tip</label>
+                  <textarea id="ssp-parent-tips" rows="2" placeholder="Practical tip parents can use at home..."></textarea>
+                </div>
+              </div>
+              <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-sky" type="submit">Save Category</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Category &amp; Slug</th>
+                  <th>Badge &amp; Format</th>
+                  <th>Visibility</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-ssp">
+                <tr><td colspan="5">Loading SSP Speech &amp; Hope categories...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -281,6 +391,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-client.js"></script>
+  <script src="js/ssp-data.js"></script>
   <script src="js/main.js"></script>
   <script src="js/admin.js"></script>
 </body>

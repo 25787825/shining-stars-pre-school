@@ -60,7 +60,8 @@ async function initAdminPortal() {
     subscribers: [],
     messages: [],
     tours: [],
-    applications: []
+    applications: [],
+    sspCategories: []
   };
 
   function showNotice(msg, isError) {
@@ -88,7 +89,8 @@ async function initAdminPortal() {
       'count-subscribers': state.subscribers.length,
       'count-messages': state.messages.length,
       'count-tours': state.tours.length,
-      'count-applications': state.applications.length
+      'count-applications': state.applications.length,
+      'count-ssp': state.sspCategories.length
     };
     Object.entries(map).forEach(([id, count]) => {
       const el = document.getElementById(id);
@@ -216,6 +218,84 @@ async function initAdminPortal() {
         : '<tr><td colspan="6">No admissions inquiries found.</td></tr>';
       bindStatusSelects(appBody, 'admissions_applications');
     }
+
+    // 5. SSP SPEECH & HOPE Categories
+    const sspBody = document.getElementById('tbody-ssp');
+    if (sspBody) {
+      const rows = state.sspCategories.filter((r) => matchesQuery(r, query));
+      sspBody.innerHTML = rows.length
+        ? rows.map((r) => `
+            <tr>
+              <td><strong>#${escapeHtml(r.sort_order)}</strong></td>
+              <td>
+                <strong>${escapeHtml(r.icon || '★')} ${escapeHtml(r.title)}</strong><br>
+                <small style="color:var(--muted);"><code>${escapeHtml(r.slug)}</code></small>
+              </td>
+              <td>
+                <span class="status-badge">${escapeHtml(r.badge)}</span><br>
+                <small style="color:var(--muted);">${escapeHtml(r.session_format)}</small>
+              </td>
+              <td>
+                <span class="status-badge ${r.is_published ? 'confirmed' : 'archived'}">${r.is_published ? 'Published' : 'Hidden'}</span>
+              </td>
+              <td>
+                <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
+                  <button class="btn btn-outline btn-sm" type="button" data-ssp-edit="${r.id}">Edit</button>
+                  <a class="btn btn-outline btn-sm" href="ssp-service.html?slug=${encodeURIComponent(r.slug)}" target="_blank" rel="noopener">View</a>
+                  <button class="btn btn-outline btn-sm" type="button" data-ssp-delete="${r.id}" style="color:#C94B3B; border-color:#EE6A59;">Delete</button>
+                </div>
+              </td>
+            </tr>
+          `).join('')
+        : '<tr><td colspan="5">No categories in Supabase yet. Click "Seed Default 8 Categories" or "+ Add New Category".</td></tr>';
+
+      sspBody.querySelectorAll('[data-ssp-edit]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = Number(btn.getAttribute('data-ssp-edit'));
+          const cat = state.sspCategories.find((c) => c.id === id);
+          if (cat) openSspEditor(cat);
+        });
+      });
+
+      sspBody.querySelectorAll('[data-ssp-delete]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const id = Number(btn.getAttribute('data-ssp-delete'));
+          const cat = state.sspCategories.find((c) => c.id === id);
+          if (!cat || !window.confirm(`Delete "${cat.title}"? This removes its dedicated page from the site.`)) return;
+          const { error } = await sb.from('ssp_categories').delete().eq('id', id);
+          if (error) {
+            showNotice(`Could not delete category: ${error.message}`, true);
+            return;
+          }
+          showNotice(`Deleted "${cat.title}".`, false);
+          await loadAllData();
+        });
+      });
+    }
+  }
+
+  function openSspEditor(cat) {
+    const card = document.getElementById('ssp-editor-card');
+    const heading = document.getElementById('ssp-editor-heading');
+    if (!card) return;
+    document.getElementById('ssp-edit-id').value = cat ? String(cat.id) : '';
+    document.getElementById('ssp-title').value = cat?.title || '';
+    document.getElementById('ssp-slug').value = cat?.slug || '';
+    document.getElementById('ssp-badge').value = cat?.badge || 'SSP Support';
+    document.getElementById('ssp-accent').value = cat?.accent_color || 'sky';
+    document.getElementById('ssp-icon').value = cat?.icon || '★';
+    document.getElementById('ssp-format').value = cat?.session_format || '1-on-1 & Small Group • Ages 2–12';
+    document.getElementById('ssp-order').value = String(cat?.sort_order ?? (state.sspCategories.length + 1));
+    document.getElementById('ssp-published').checked = cat ? Boolean(cat.is_published) : true;
+    document.getElementById('ssp-summary').value = cat?.summary || '';
+    document.getElementById('ssp-hero-subtitle').value = cat?.hero_subtitle || '';
+    document.getElementById('ssp-overview').value = cat?.overview || '';
+    document.getElementById('ssp-who').value = cat?.who_its_for || '';
+    document.getElementById('ssp-strategies').value = cat?.support_strategies || '';
+    document.getElementById('ssp-parent-tips').value = cat?.parent_tips || '';
+    if (heading) heading.textContent = cat ? `Edit: ${cat.title}` : 'Add New SSP Category';
+    card.style.display = 'block';
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   async function loadAllData() {
@@ -245,11 +325,12 @@ async function initAdminPortal() {
       return;
     }
 
-    const [subsRes, msgsRes, toursRes, appsRes] = await Promise.all([
+    const [subsRes, msgsRes, toursRes, appsRes, sspRes] = await Promise.all([
       sb.from('newsletter_subscribers').select('*').order('subscribed_at', { ascending: false }),
       sb.from('contact_messages').select('*').order('created_at', { ascending: false }),
       sb.from('tour_bookings').select('*').order('created_at', { ascending: false }),
-      sb.from('admissions_applications').select('*').order('created_at', { ascending: false })
+      sb.from('admissions_applications').select('*').order('created_at', { ascending: false }),
+      sb.from('ssp_categories').select('*').order('sort_order', { ascending: true }).order('id', { ascending: true })
     ]);
 
     const firstError = subsRes.error || msgsRes.error || toursRes.error || appsRes.error;
@@ -258,10 +339,15 @@ async function initAdminPortal() {
       return;
     }
 
+    if (sspRes.error) {
+      showNotice(`SSP Speech & Hope table note: ${sspRes.error.message}. Run supabase/ssp-speech-hope.sql in Supabase SQL Editor to enable live editing.`, true);
+    }
+
     state.subscribers = subsRes.data || [];
     state.messages = msgsRes.data || [];
     state.tours = toursRes.data || [];
     state.applications = appsRes.data || [];
+    state.sspCategories = sspRes.data || [];
     renderCounts();
     renderTables();
   }
@@ -503,6 +589,84 @@ async function initAdminPortal() {
       state.applications.map((r) => [r.reference_code, r.parent_name, r.phone, r.email, r.child_name, r.date_of_birth, r.program, r.previous_school, r.status, r.created_at])
     );
   });
+
+  // SSP SPEECH & HOPE Category Editor Controls
+  const sspEditorCard = document.getElementById('ssp-editor-card');
+  const sspEditorForm = document.getElementById('ssp-editor-form');
+  const sspTitleInput = document.getElementById('ssp-title');
+  const sspSlugInput = document.getElementById('ssp-slug');
+
+  if (sspTitleInput && sspSlugInput) {
+    sspTitleInput.addEventListener('input', () => {
+      const editId = document.getElementById('ssp-edit-id')?.value;
+      if (!editId && window.sspUtils) {
+        sspSlugInput.value = window.sspUtils.slugify(sspTitleInput.value);
+      }
+    });
+  }
+
+  document.getElementById('ssp-new-btn')?.addEventListener('click', () => openSspEditor(null));
+  document.getElementById('ssp-editor-cancel')?.addEventListener('click', () => {
+    if (sspEditorCard) sspEditorCard.style.display = 'none';
+  });
+
+  document.getElementById('ssp-seed-btn')?.addEventListener('click', async () => {
+    const defaults = (window.SSP_DEFAULT_CATEGORIES || []).map(({ id, ...rest }) => rest);
+    if (!defaults.length) return;
+    const { error } = await sb.from('ssp_categories').upsert(defaults, { onConflict: 'slug', ignoreDuplicates: true });
+    if (error) {
+      showNotice(`Could not seed categories: ${error.message}`, true);
+      return;
+    }
+    showNotice('Seeded default SSP Speech & Hope categories!', false);
+    await loadAllData();
+  });
+
+  if (sspEditorForm) {
+    sspEditorForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const editId = document.getElementById('ssp-edit-id')?.value;
+      const title = String(sspTitleInput?.value || '').trim();
+      const slug = window.sspUtils ? window.sspUtils.slugify(sspSlugInput?.value || title) : String(sspSlugInput?.value || '').trim();
+      const summary = String(document.getElementById('ssp-summary')?.value || '').trim();
+
+      if (title.length < 2 || slug.length < 2 || summary.length < 10) {
+        showNotice('Please enter a valid Title, Slug, and Summary (at least 10 characters).', true);
+        return;
+      }
+
+      const payload = {
+        title,
+        slug,
+        badge: String(document.getElementById('ssp-badge')?.value || 'SSP Support').trim(),
+        accent_color: document.getElementById('ssp-accent')?.value || 'sky',
+        icon: String(document.getElementById('ssp-icon')?.value || '★').trim(),
+        session_format: String(document.getElementById('ssp-format')?.value || 'Ages 2–12').trim(),
+        sort_order: Number(document.getElementById('ssp-order')?.value || 10),
+        is_published: Boolean(document.getElementById('ssp-published')?.checked),
+        summary,
+        hero_subtitle: String(document.getElementById('ssp-hero-subtitle')?.value || '').trim(),
+        overview: String(document.getElementById('ssp-overview')?.value || '').trim(),
+        who_its_for: String(document.getElementById('ssp-who')?.value || '').trim(),
+        support_strategies: String(document.getElementById('ssp-strategies')?.value || '').trim(),
+        parent_tips: String(document.getElementById('ssp-parent-tips')?.value || '').trim(),
+        updated_at: new Date().toISOString()
+      };
+
+      const res = editId
+        ? await sb.from('ssp_categories').update(payload).eq('id', Number(editId))
+        : await sb.from('ssp_categories').insert([payload]);
+
+      if (res.error) {
+        showNotice(`Could not save category: ${res.error.message}`, true);
+        return;
+      }
+
+      if (sspEditorCard) sspEditorCard.style.display = 'none';
+      showNotice(`Saved "${title}" successfully!`, false);
+      await loadAllData();
+    });
+  }
 
   const { data: initialSession } = await sb.auth.getSession();
   if (initialSession?.session?.user) {

@@ -3,6 +3,11 @@
 [build]
   publish = "."
 
+[[redirects]]
+  from = "/ssp-speech-hope/*"
+  to = "/ssp-service.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
