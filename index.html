@@ -76,7 +76,71 @@
           <a class="btn btn-outline" href="admissions.html#admissions-portal">Book a Specialist Consultation</a>
         </div>
       </div>
-    </section>
+    </section> 
+    <!-- ONLINE ADMISSION FORM - FINAL -->
+<section id="admission" style="padding:40px 15px; background:#f8f9ff;">
+  <div style="max-width:600px; margin:auto; background:#fff; padding:25px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+    <h2 style="text-align:center; color:#1a237e; margin-bottom:5px;">Online Admission Form</h2>
+    <p style="text-align:center; color:#555; margin-bottom:20px;">Shining Star's Public School - Bhimber</p>
+
+    <form onsubmit="sendToWhatsApp(event)">
+      <label>Student ka Naam *</label><br>
+      <input id="sname" type="text" required placeholder="Student ka poora naam" style="width:100%; padding:12px; margin:5px 0 15px; border:1px solid #ddd; border-radius:8px;"><br>
+
+      <label>Father ka Naam *</label><br>
+      <input id="fname" type="text" required placeholder="Father ka naam" style="width:100%; padding:12px; margin:5px 0 15px; border:1px solid #ddd; border-radius:8px;"><br>
+
+      <label>Class *</label><br>
+      <select id="sclass" required style="width:100%; padding:12px; margin:5px 0 15px; border:1px solid #ddd; border-radius:8px;">
+        <option value="">Class Select Karen</option>
+        <option>Play Group</option>
+        <option>Nursery</option>
+        <option>KG</option>
+        <option>Class 1</option>
+        <option>Class 2</option>
+        <option>Class 3</option>
+        <option>Class 4</option>
+        <option>Class 5</option>
+        <option>Class 6</option>
+        <option>Class 7</option>
+        <option>Class 8</option>
+        <option>Class 9</option>
+        <option>Class 10</option>
+      </select><br>
+
+      <label>Date of Birth</label><br>
+      <input id="dob" type="date" style="width:100%; padding:12px; margin:5px 0 15px; border:1px solid #ddd; border-radius:8px;"><br>
+
+      <label>Parents ka WhatsApp Number *</label><br>
+      <input id="phone" type="tel" required placeholder="Walid ka WhatsApp number - 03xx-xxxxxxx" style="width:100%; padding:12px; margin:5px 0 15px; border:1px solid #ddd; border-radius:8px;"><br>
+
+      <label>Parents ka Email Address</label><br>
+      <input id="email" type="email" placeholder="Reports ke liye email" style="width:100%; padding:12px; margin:5px 0 15px; border:1px solid #ddd; border-radius:8px;"><br>
+
+      <label>Address / Gaon ka Naam *</label><br>
+      <input id="address" type="text" required placeholder="Gaon / Mohalla, Bhimber" style="width:100%; padding:12px; margin:5px 0 20px; border:1px solid #ddd; border-radius:8px;"><br>
+
+      <button type="submit" style="width:100%; padding:15px; background:#25D366; color:#fff; border:none; border-radius:10px; font-size:18px; font-weight:bold; cursor:pointer;">WhatsApp par Admission Bhejen ✅</button>
+      <p style="text-align:center; font-size:13px; color:#777; margin-top:10px;">Submit dabate hi WhatsApp khulega, bas Send dabana hai.</p>
+    </form>
+  </div>
+</section>
+
+<script>
+function sendToWhatsApp(e){
+  e.preventDefault();
+  var msg = "🎓 *NEW ADMISSION - Shining Star's School*%0A%0A" +
+  "*Student:* " + encodeURIComponent(document.getElementById('sname').value) + "%0A" +
+  "*Father:* " + encodeURIComponent(document.getElementById('fname').value) + "%0A" +
+  "*Class:* " + encodeURIComponent(document.getElementById('sclass').value) + "%0A" +
+  "*DOB:* " + encodeURIComponent(document.getElementById('dob').value) + "%0A" +
+  "*Parents WhatsApp:* " + encodeURIComponent(document.getElementById('phone').value) + "%0A" +
+  "*Parents Email:* " + encodeURIComponent(document.getElementById('email').value) + "%0A" +
+  "*Address:* " + encodeURIComponent(document.getElementById('address').value);
+  window.open("https://wa.me/923479912072?text=" + msg, "_blank");
+}
+</script>
+<!-- ADMISSION FORM END -->
 
     <!-- Hero Section -->
     <section class="hero">
