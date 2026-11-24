@@ -30,6 +30,7 @@
           <li><a href="about.html">About &amp; Faculty</a></li>
           <li><a href="gallery.html">Campus Gallery</a></li>
           <li><a href="events.html">News &amp; Events</a></li>
+          <li><a href="reviews.html">Parent Reviews</a></li>
           <li><a href="admissions.html">Admissions</a></li>
         </ul>
       </nav>
@@ -68,7 +69,7 @@
             <div class="form-grid" style="grid-template-columns: 1fr;">
               <div class="form-field">
                 <label for="admin-email">Staff Email Address</label>
-                <input id="admin-email" type="email" placeholder="principal@shiningstars.edu" required>
+                <input id="admin-email" type="email" placeholder="sspspeechandhope@gmail.com" required>
               </div>
               <div class="form-field">
                 <label for="admin-password">Password</label>
@@ -159,6 +160,10 @@
             <span>Admissions Inquiries</span>
           </div>
           <div class="card admin-stat-card">
+            <strong id="count-reviews">0</strong>
+            <span>Parent Reviews</span>
+          </div>
+          <div class="card admin-stat-card">
             <strong id="count-ssp">0</strong>
             <span>SSP Speech &amp; Hope</span>
           </div>
@@ -171,6 +176,7 @@
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-subscribers">Newsletter Subscribers</button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-tours">Tour Bookings</button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-applications">Admissions Inquiries</button>
+            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-reviews">Parent Reviews</button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-ssp">SSP Speech &amp; Hope</button>
           </div>
           <input id="admin-search-input" class="admin-search" type="search" placeholder="Search by name, email, or reference..." aria-label="Search records">
@@ -263,6 +269,30 @@
               </thead>
               <tbody id="tbody-applications">
                 <tr><td colspan="6">Loading admissions inquiries...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Parent Reviews & Suggestions Table -->
+        <div class="tab-panel" data-tab-panel="admin-reviews">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.75rem;">
+            <button id="export-reviews-btn" class="btn btn-outline btn-sm" type="button">Export Parent Reviews CSV</button>
+          </div>
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Parent / Email &amp; Phone</th>
+                  <th>Program &amp; Progress Stars</th>
+                  <th>Review &amp; Improvement Suggestions</th>
+                  <th>Visibility</th>
+                  <th>Submitted</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-reviews">
+                <tr><td colspan="6">Loading parent reviews...</td></tr>
               </tbody>
             </table>
           </div>

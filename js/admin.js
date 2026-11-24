@@ -61,6 +61,7 @@ async function initAdminPortal() {
     messages: [],
     tours: [],
     applications: [],
+    reviews: [],
     sspCategories: []
   };
 
@@ -90,6 +91,7 @@ async function initAdminPortal() {
       'count-messages': state.messages.length,
       'count-tours': state.tours.length,
       'count-applications': state.applications.length,
+      'count-reviews': state.reviews.length,
       'count-ssp': state.sspCategories.length
     };
     Object.entries(map).forEach(([id, count]) => {
@@ -219,6 +221,35 @@ async function initAdminPortal() {
       bindStatusSelects(appBody, 'admissions_applications');
     }
 
+    // 5. Parent Reviews & Suggestions
+    const revBody = document.getElementById('tbody-reviews');
+    if (revBody) {
+      const rows = state.reviews.filter((r) => matchesQuery(r, query));
+      revBody.innerHTML = rows.length
+        ? rows.map((r) => `
+            <tr>
+              <td><code>${escapeHtml(r.reference_code)}</code></td>
+              <td>
+                <strong>${escapeHtml(r.parent_name)}</strong><br>
+                <small>${escapeHtml(r.email)} • ${escapeHtml(r.phone)}</small>
+              </td>
+              <td>
+                <span style="color:var(--gold-dark); font-weight:700;">${'★'.repeat(Number(r.progress_stars) || 5)} (${Number(r.progress_stars) || 5}/5)</span><br>
+                <small>${escapeHtml(r.child_program)}</small>
+              </td>
+              <td>
+                <strong>Review:</strong> ${escapeHtml(r.review_text)}
+                ${r.suggestions ? '<br><small style="color:var(--sky-dark);"><strong>Suggestion:</strong> ' + escapeHtml(r.suggestions) + '</small>' : ''}
+              </td>
+              <td>
+                <span class="status-badge ${r.is_published !== false && r.is_approved !== false ? 'confirmed' : 'archived'}">${r.is_approved !== false ? 'Approved' : 'Hidden'}</span>
+              </td>
+              <td>${escapeHtml(formatDateTime(r.created_at))}</td>
+            </tr>
+          `).join('')
+        : '<tr><td colspan="6">No parent reviews submitted yet.</td></tr>';
+    }
+
     // 5. SSP SPEECH & HOPE Categories
     const sspBody = document.getElementById('tbody-ssp');
     if (sspBody) {
@@ -325,11 +356,12 @@ async function initAdminPortal() {
       return;
     }
 
-    const [subsRes, msgsRes, toursRes, appsRes, sspRes] = await Promise.all([
+    const [subsRes, msgsRes, toursRes, appsRes, revsRes, sspRes] = await Promise.all([
       sb.from('newsletter_subscribers').select('*').order('subscribed_at', { ascending: false }),
       sb.from('contact_messages').select('*').order('created_at', { ascending: false }),
       sb.from('tour_bookings').select('*').order('created_at', { ascending: false }),
       sb.from('admissions_applications').select('*').order('created_at', { ascending: false }),
+      sb.from('parent_reviews').select('*').order('created_at', { ascending: false }),
       sb.from('ssp_categories').select('*').order('sort_order', { ascending: true }).order('id', { ascending: true })
     ]);
 
@@ -347,6 +379,7 @@ async function initAdminPortal() {
     state.messages = msgsRes.data || [];
     state.tours = toursRes.data || [];
     state.applications = appsRes.data || [];
+    state.reviews = revsRes.data || [];
     state.sspCategories = sspRes.data || [];
     renderCounts();
     renderTables();
@@ -587,6 +620,14 @@ async function initAdminPortal() {
       'shining-stars-admissions-inquiries.csv',
       ['Reference', 'Parent', 'Phone', 'Email', 'Child', 'DOB', 'Program', 'Previous School', 'Status', 'Created At'],
       state.applications.map((r) => [r.reference_code, r.parent_name, r.phone, r.email, r.child_name, r.date_of_birth, r.program, r.previous_school, r.status, r.created_at])
+    );
+  });
+
+  document.getElementById('export-reviews-btn')?.addEventListener('click', () => {
+    downloadCsv(
+      'shining-stars-parent-reviews.csv',
+      ['Reference', 'Parent', 'Email', 'Phone', 'Program', 'Progress Stars', 'Review', 'Suggestions', 'Approved', 'Created At'],
+      state.reviews.map((r) => [r.reference_code, r.parent_name, r.email, r.phone, r.child_program, r.progress_stars, r.review_text, r.suggestions, r.is_approved, r.created_at])
     );
   });
 

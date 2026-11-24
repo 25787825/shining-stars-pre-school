@@ -17,7 +17,8 @@
   <div class="announcement-bar">
     <div class="container announcement-inner">
       <span class="announcement-pill">2026–2027 Admissions Open</span>
-      <span>Playgroup, Nursery, Kindergarten &amp; Primary Academy (Grades 1–5) — Limited seats available.</span>
+      <span>Playgroup, Nursery, Kindergarten &amp; Primary Academy (Grades 1–5).</span>
+      <a class="announcement-link" href="reviews.html">★ Parent Reviews &amp; Rate Progress</a>
       <a class="announcement-link" href="admissions.html">Book a Campus Tour &rarr;</a>
     </div>
   </div>
@@ -41,6 +42,7 @@
           <li><a href="about.html">About &amp; Faculty</a></li>
           <li><a href="gallery.html">Campus Gallery</a></li>
           <li><a href="events.html">News &amp; Events</a></li>
+          <li><a href="reviews.html">Parent Reviews</a></li>
           <li><a href="admissions.html">Admissions</a></li>
         </ul>
       </nav>
@@ -407,7 +409,7 @@ function sendToWhatsApp(e){
           <p>
             We invite your family to walk our classrooms, meet our teachers, and feel the warmth of our learning community firsthand.
           </p>
-          <p><strong>— Iqra Azeem, M.Ed.</strong><br><span style="color: var(--muted); font-size: 0.9rem;">Founder &amp; Principal, Shining Stars Pre School &amp; Academy</span></p>
+          <p><strong>— Iqra Azeem</strong><br><span style="color: var(--muted); font-size: 0.9rem;">Founder - SSP Speech &amp; Hope | Certified Global Montessori Educator, ECE Specialist</span></p>
           <a class="btn btn-outline" href="about.html">Meet Our Principal &amp; Faculty</a>
         </div>
       </div>
@@ -471,7 +473,7 @@ function sendToWhatsApp(e){
           <div>
             <span class="eyebrow coral">Parent Voices</span>
             <h2 style="font-size: 2rem; margin-bottom: 1.25rem;">Loved by Families Across Town</h2>
-            <div style="display: grid; gap: 1rem;">
+            <div style="display: grid; gap: 1rem;" data-reviews-wall data-limit="2">
               <article class="quote-card">
                 <div class="stars-row" aria-label="5 out of 5 stars">★★★★★</div>
                 <blockquote>“My daughter started in Playgroup feeling shy, and now in Kindergarten she reads bedtime stories aloud with so much pride. The teachers truly know and cherish her.”</blockquote>
@@ -489,6 +491,104 @@ function sendToWhatsApp(e){
                   <span>Parent of Daniyal (Grade 3)</span>
                 </div>
               </article>
+            </div>
+            <div style="margin-top: 1.15rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a class="btn btn-primary btn-sm" href="reviews.html#write-review-section">★ Write Your Review &amp; Suggestions</a>
+              <a class="btn btn-outline btn-sm" href="reviews.html">View All Parent Reviews &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Write Your Review & School Progress Stars Section -->
+    <section id="home-write-review" class="section bg-sky-soft">
+      <div class="container">
+        <div class="section-header centered">
+          <span class="eyebrow coral">★ Parent Feedback &amp; School Progress</span>
+          <h2>Write Your Review &amp; Suggestions for Improvement</h2>
+          <p>Give stars for our school progress and share your suggestions directly with Principal Iqra Azeem.</p>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.25fr 0.75fr; align-items: start; gap: 2rem;">
+          <div class="form-card" data-review-wrapper>
+            <form data-review-form novalidate>
+              <div class="form-grid">
+                <div class="form-field full">
+                  <label>Give Stars for School Progress *</label>
+                  <div class="star-rating-picker" data-star-picker role="group" aria-label="Rate school progress from 1 to 5 stars">
+                    <input type="hidden" name="progressStars" value="5">
+                    <button class="star-btn active" type="button" data-star-value="1" aria-label="1 Star">★</button>
+                    <button class="star-btn active" type="button" data-star-value="2" aria-label="2 Stars">★</button>
+                    <button class="star-btn active" type="button" data-star-value="3" aria-label="3 Stars">★</button>
+                    <button class="star-btn active" type="button" data-star-value="4" aria-label="4 Stars">★</button>
+                    <button class="star-btn active" type="button" data-star-value="5" aria-label="5 Stars">★</button>
+                    <span class="star-rating-label" data-star-label>5 Stars — Outstanding School Progress!</span>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="home-rev-parent">Parent / Guardian Full Name *</label>
+                  <input id="home-rev-parent" name="parentName" type="text" placeholder="e.g., Sana &amp; Bilal Ahmed" required>
+                  <span class="form-error">Please enter your name.</span>
+                </div>
+
+                <div class="form-field">
+                  <label for="home-rev-program">Child’s Grade / Program *</label>
+                  <select id="home-rev-program" name="childProgram" required>
+                    <option value="">Select program...</option>
+                    <option value="Playgroup (Ages 2–3)">Playgroup (Ages 2–3)</option>
+                    <option value="Nursery (Ages 3–4)">Nursery (Ages 3–4)</option>
+                    <option value="Kindergarten (Ages 4–6)">Kindergarten (Ages 4–6)</option>
+                    <option value="Primary Academy (Grades 1–5)">Primary Academy (Grades 1–5)</option>
+                    <option value="SSP Speech & Hope">SSP Speech &amp; Hope</option>
+                  </select>
+                  <span class="form-error">Please select your child’s program.</span>
+                </div>
+
+                <div class="form-field">
+                  <label for="home-rev-email">Email Address * (Private to Staff)</label>
+                  <input id="home-rev-email" name="email" type="email" placeholder="parent@example.com" required>
+                  <span class="form-error">Please enter a valid email address.</span>
+                </div>
+
+                <div class="form-field">
+                  <label for="home-rev-phone">Phone / WhatsApp Number * (Private to Staff)</label>
+                  <input id="home-rev-phone" name="phone" type="tel" placeholder="(555) 234-5678" required>
+                  <span class="form-error">Please enter your phone number.</span>
+                </div>
+
+                <div class="form-field full">
+                  <label for="home-rev-text">Write Your Review of School Progress *</label>
+                  <textarea id="home-rev-text" name="reviewText" rows="3" placeholder="Share your experience with your child's teachers, learning progress, and school care..." required></textarea>
+                  <span class="form-error">Please write your review.</span>
+                </div>
+
+                <div class="form-field full">
+                  <label for="home-rev-suggestions">Suggestions for Improvements (Optional)</label>
+                  <textarea id="home-rev-suggestions" name="suggestions" rows="2" placeholder="Any ideas or suggestions to help us improve our school further..."></textarea>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.35rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-primary" type="submit">Submit Review &amp; Suggestions</button>
+                <a class="btn btn-outline" href="reviews.html">Open Full Reviews Page</a>
+              </div>
+            </form>
+
+            <div class="confirmation-box" data-review-confirmation aria-live="polite">
+              <h3 style="color: #166549; margin-bottom: 0.5rem;">★ Thank You for Your Review &amp; Suggestions!</h3>
+              <p data-review-summary style="margin-bottom: 1.1rem; color: var(--navy);"></p>
+              <button class="btn btn-outline btn-sm" type="button" data-review-reset>Write Another Review</button>
+            </div>
+          </div>
+
+          <div class="progress-summary-card">
+            <span class="eyebrow" style="background: #FFFFFF;">School Progress Rating</span>
+            <h3 style="margin-bottom: 1rem;">Parent Satisfaction &amp; Progress Stars</h3>
+            <div data-progress-summary></div>
+            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px dashed #E5C878;">
+              <a class="btn btn-outline btn-sm" href="reviews.html" style="width: 100%;">Read All Parent Reviews &rarr;</a>
             </div>
           </div>
         </div>
@@ -520,8 +620,8 @@ function sendToWhatsApp(e){
           <h3>★ Shining Stars Pre School &amp; Academy</h3>
           <p style="font-size: 0.92rem;">A warm, inspiring learning community for ages 2–12, uniting joyful Montessori early years with an inquiry-driven Primary Academy.</p>
           <p style="font-size: 0.88rem; margin-bottom: 0;">
-            📍 48 Sunshine Avenue, Greenview Enclave<br>
-            📞 (555) 234-8910 • ✉ admissions@shiningstars.edu
+            📍 DC Office Road, District Bhimber A.K.<br>
+            📞 0347-9912072 • ✉ sspspeechandhope@gmail.com
           </p>
         </div>
 
@@ -533,6 +633,7 @@ function sendToWhatsApp(e){
             <li><a href="about.html">About Us &amp; Faculty</a></li>
             <li><a href="gallery.html">Campus Gallery</a></li>
             <li><a href="events.html">News, Events &amp; FAQs</a></li>
+            <li><a href="reviews.html">Parent Reviews &amp; Suggestions</a></li>
             <li><a href="admissions.html">Admissions &amp; Tour Booking</a></li>
             <li><a href="admin.html">Staff Admin Portal</a></li>
           </ul>
@@ -572,6 +673,7 @@ function sendToWhatsApp(e){
   <script src="js/supabase-client.js"></script>
   <script src="js/ssp-data.js"></script>
   <script src="js/ssp-pages.js"></script>
+  <script src="js/reviews.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

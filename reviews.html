@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parent Reviews &amp; School Progress | Shining Stars Pre School &amp; Academy</title>
+  <meta name="description" content="Read parent reviews, rate school progress with stars, and share suggestions for improvement with Principal Iqra Azeem at Shining Stars Pre School &amp; Academy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="assets/images/ssp-logo.jpg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span class="announcement-pill">Parent Voice &amp; Progress</span>
+      <span>We value every family’s feedback! Rate our school progress and share your suggestions.</span>
+      <a class="announcement-link" href="#write-review-section">Write a Review &rarr;</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Shining Stars Pre School and Academy Home">
+        <img class="brand-mark brand-logo-img" src="assets/images/ssp-logo.jpg" alt="Shining Stars — SSP Speech &amp; Hope Logo">
+        <span class="brand-text">
+          <span class="brand-name">Shining Stars</span>
+          <span class="brand-sub">Pre School &amp; Academy</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="ssp-speech-hope.html">SSP Speech &amp; Hope</a></li>
+          <li><a href="about.html">About &amp; Faculty</a></li>
+          <li><a href="gallery.html">Campus Gallery</a></li>
+          <li><a href="events.html">News &amp; Events</a></li>
+          <li><a class="active" href="reviews.html">Parent Reviews</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm" href="admissions.html">Book a Tour</a>
+        <button class="mobile-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Toggle navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Parent Reviews &amp; School Progress</span></div>
+        <span class="eyebrow">★ Family Feedback &amp; Continuous Growth</span>
+        <h1>Parent Reviews, School Progress Stars &amp; Suggestions</h1>
+        <p>Share your child’s learning experience, give stars for our school progress, and send suggestions directly to Principal Iqra Azeem and our academic leadership team.</p>
+      </div>
+    </section>
+
+    <!-- Write Your Review & Suggestions + Progress Rating Summary -->
+    <section id="write-review-section" class="section bg-sky-soft">
+      <div class="container">
+        <div class="grid-2" style="grid-template-columns: 1.25fr 0.75fr; align-items: start; gap: 2rem;">
+          <!-- Write Your Review Form -->
+          <div class="form-card" data-review-wrapper>
+            <span class="eyebrow coral">Write Your Review</span>
+            <h2 style="margin-bottom: 0.35rem;">Rate School Progress &amp; Share Suggestions</h2>
+            <p style="color: var(--muted); font-size: 0.94rem; margin-bottom: 1.4rem;">
+              Your email and phone number are kept strictly private for school leadership follow-up and are never shown publicly.
+            </p>
+
+            <form data-review-form novalidate>
+              <div class="form-grid">
+                <div class="form-field full">
+                  <label>Give Stars for School Progress *</label>
+                  <div class="star-rating-picker" data-star-picker role="group" aria-label="Rate school progress from 1 to 5 stars">
+                    <input type="hidden" name="progressStars" value="5">
+                    <button class="star-btn active" type="button" data-star-value="1" aria-label="1 Star">★</button>
+                    <button class="star-btn active" type="button" data-star-value="2" aria-label="2 Stars">★</button>
+                    <button class="star-btn active" type="button" data-star-value="3" aria-label="3 Stars">★</button>
+                    <button class="star-btn active" type="button" data-star-value="4" aria-label="4 Stars">★</button>
+                    <button class="star-btn active" type="button" data-star-value="5" aria-label="5 Stars">★</button>
+                    <span class="star-rating-label" data-star-label>5 Stars — Outstanding School Progress!</span>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="rev-parent">Parent / Guardian Full Name *</label>
+                  <input id="rev-parent" name="parentName" type="text" placeholder="e.g., Sana &amp; Bilal Ahmed" required>
+                  <span class="form-error">Please enter your name.</span>
+                </div>
+
+                <div class="form-field">
+                  <label for="rev-program">Child’s Grade / Program *</label>
+                  <select id="rev-program" name="childProgram" required>
+                    <option value="">Select program...</option>
+                    <option value="Playgroup (Ages 2–3)">Playgroup (Ages 2–3)</option>
+                    <option value="Nursery (Ages 3–4)">Nursery (Ages 3–4)</option>
+                    <option value="Kindergarten (Ages 4–6)">Kindergarten (Ages 4–6)</option>
+                    <option value="Primary Academy (Grades 1–5)">Primary Academy (Grades 1–5)</option>
+                    <option value="SSP Speech & Hope">SSP Speech &amp; Hope</option>
+                  </select>
+                  <span class="form-error">Please select your child’s program.</span>
+                </div>
+
+                <div class="form-field">
+                  <label for="rev-email">Email Address * (Private to Staff)</label>
+                  <input id="rev-email" name="email" type="email" placeholder="parent@example.com" required>
+                  <span class="form-error">Please enter a valid email address.</span>
+                </div>
+
+                <div class="form-field">
+                  <label for="rev-phone">Phone / WhatsApp Number * (Private to Staff)</label>
+                  <input id="rev-phone" name="phone" type="tel" placeholder="(555) 234-5678" required>
+                  <span class="form-error">Please enter your phone number.</span>
+                </div>
+
+                <div class="form-field full">
+                  <label for="rev-text">Write Your Review of School Progress *</label>
+                  <textarea id="rev-text" name="reviewText" rows="3" placeholder="Share how your child is growing academically, socially, or through SSP Speech &amp; Hope..." required></textarea>
+                  <span class="form-error">Please write your review (at least 5 characters).</span>
+                </div>
+
+                <div class="form-field full">
+                  <label for="rev-suggestions">Suggestions for Improvements (Optional)</label>
+                  <textarea id="rev-suggestions" name="suggestions" rows="3" placeholder="Share any constructive ideas or suggestions to help us improve our classrooms, activities, or parent communication..."></textarea>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.35rem;">
+                <button class="btn btn-primary" type="submit">Submit Review &amp; Suggestions</button>
+              </div>
+            </form>
+
+            <div class="confirmation-box" data-review-confirmation aria-live="polite">
+              <h3 style="color: #166549; margin-bottom: 0.5rem;">★ Thank You for Your Review &amp; Suggestions!</h3>
+              <p data-review-summary style="margin-bottom: 1.1rem; color: var(--navy);"></p>
+              <button class="btn btn-outline btn-sm" type="button" data-review-reset>Write Another Review</button>
+            </div>
+          </div>
+
+          <!-- Progress Star Summary Sidebar -->
+          <aside style="display: grid; gap: 1.35rem;">
+            <div class="progress-summary-card">
+              <span class="eyebrow" style="background: #FFFFFF;">School Progress Rating</span>
+              <h3 style="margin-bottom: 1rem;">Overall Parent Satisfaction</h3>
+              <div data-progress-summary></div>
+            </div>
+
+            <div class="card">
+              <span class="eyebrow mint">Principal’s Commitment</span>
+              <h3>Every Suggestion Is Reviewed</h3>
+              <p style="font-size: 0.93rem; color: var(--muted); margin-bottom: 0;">
+                “Parent partnership is the heartbeat of Shining Stars. Every review and improvement suggestion you submit is read personally by our leadership team so we continue elevating our classrooms and care.”<br><br>
+                <strong style="color: var(--navy);">— Iqra Azeem</strong><br>
+                <span style="font-size: 0.84rem;">Founder - SSP Speech &amp; Hope | Certified Global Montessori Educator, ECE Specialist</span>
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parent Reviews Wall -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header centered">
+          <span class="eyebrow sky">Verified Family Voices</span>
+          <h2>Recent Parent Reviews &amp; Progress Ratings</h2>
+          <p>Read what Shining Stars parents share about their children’s growth and learning journey.</p>
+        </div>
+
+        <div class="grid-3" data-reviews-wall></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>★ Shining Stars Pre School &amp; Academy</h3>
+          <p style="font-size: 0.92rem;">A warm, inspiring learning community for ages 2–12, uniting joyful Montessori early years with an inquiry-driven Primary Academy.</p>
+          <p style="font-size: 0.88rem; margin-bottom: 0;">
+            📍 DC Office Road, District Bhimber A.K.<br>
+            📞 0347-9912072 • ✉ sspspeechandhope@gmail.com
+          </p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="programs.html">Programs &amp; Curriculum</a></li>
+            <li><a href="ssp-speech-hope.html">SSP Speech &amp; Hope</a></li>
+            <li><a href="about.html">About Us &amp; Faculty</a></li>
+            <li><a href="gallery.html">Campus Gallery</a></li>
+            <li><a href="events.html">News, Events &amp; FAQs</a></li>
+            <li><a href="reviews.html">Parent Reviews &amp; Suggestions</a></li>
+            <li><a href="admissions.html">Admissions &amp; Tour Booking</a></li>
+            <li><a href="admin.html">Staff Admin Portal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>School Hours</h4>
+          <ul class="footer-links">
+            <li>Playgroup &amp; Nursery: 8:30 AM – 12:30 PM</li>
+            <li>Kindergarten: 8:15 AM – 1:15 PM</li>
+            <li>Primary (Grades 1–5): 8:00 AM – 2:15 PM</li>
+            <li>After-School Care: Until 4:30 PM</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Monthly School Newsletter</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 0.4rem;">Get open-house reminders and parenting tips from our educators.</p>
+          <form class="newsletter-form" data-newsletter-form novalidate>
+            <label class="sr-only" for="footer-email-rev">Email address</label>
+            <input id="footer-email-rev" type="email" placeholder="parent@example.com" required>
+            <button class="btn btn-gold btn-sm" type="submit">Join</button>
+          </form>
+          <div class="newsletter-status" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Shining Stars Pre School &amp; Academy. All rights reserved.</span>
+        <span>Nurturing Bright Futures • Playgroup to Grade 5</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/reviews.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
