@@ -93,6 +93,133 @@
       </div>
     </section>
 
+    <!-- Full Paper-Style Admission Form (WhatsApp + Online) -->
+    <section id="admission" class="section bg-cream-warm">
+      <div class="container">
+        <div style="max-width: 820px; margin: 0 auto; background: #FFFFFF; padding: 2rem; border: 2px solid var(--navy); border-radius: 18px; box-shadow: var(--shadow-md);">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 2px solid var(--gold); padding-bottom: 1rem; flex-wrap: wrap;">
+            <img src="assets/images/ssp-logo.jpg" alt="Shining Stars — SSP Speech &amp; Hope Logo" style="width: 84px; height: 58px; object-fit: contain; border-radius: 10px; border: 1px solid var(--border); padding: 3px;">
+            <div style="text-align: center; flex: 1; min-width: 220px;">
+              <h2 style="margin: 0; color: var(--navy); font-size: 1.45rem; line-height: 1.2;">SHINING STAR'S PRESCHOOL<br>SPEECH &amp; HOPE</h2>
+              <p style="margin: 0.25rem 0 0; letter-spacing: 3px; color: var(--sky-dark); font-weight: 700; font-size: 0.78rem;">OFFICIAL ADMISSION FORM</p>
+              <p style="margin: 0.15rem 0 0; color: var(--muted); font-size: 0.78rem;">DC Office Road, District Bhimber A.K. • 0347-9912072</p>
+            </div>
+            <div style="border: 1.5px dashed var(--border); width: 74px; height: 84px; border-radius: 8px; text-align: center; font-size: 0.7rem; color: var(--muted); display: grid; place-items: center; padding: 4px;">Student<br>Photo</div>
+          </div>
+
+          <form onsubmit="sendFullForm(event)" style="margin-top: 1.25rem;">
+            <div class="form-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+              <div class="form-field"><input id="formno" placeholder="Form No:"></div>
+              <div class="form-field"><input id="fdate" type="date" aria-label="Form Date"></div>
+              <div class="form-field"><input id="session" placeholder="Session (e.g., 2026–2027):"></div>
+            </div>
+
+            <h3 style="color: var(--navy); border-bottom: 1.5px solid var(--gold); padding-bottom: 0.35rem; margin-top: 1.4rem; font-size: 1.08rem;">STUDENT INFORMATION</h3>
+            <div class="form-grid">
+              <div class="form-field full"><input id="sname" required placeholder="Student Full Name: *"></div>
+              <div class="form-field"><input id="sclass" required placeholder="Class Applied For: *"></div>
+              <div class="form-field"><input id="dob" type="date" aria-label="Date of Birth"></div>
+              <div class="form-field"><input id="age" type="number" placeholder="Age (Years)"></div>
+              <div class="form-field">
+                <select id="gender" aria-label="Gender">
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="form-field"><input id="blood" placeholder="Blood Group"></div>
+              <div class="form-field"><input id="bform" placeholder="B-Form / CNIC No:"></div>
+              <div class="form-field"><input id="religion" placeholder="Religion"></div>
+              <div class="form-field"><input id="nationality" placeholder="Nationality"></div>
+              <div class="form-field full"><input id="tongue" placeholder="Mother Tongue"></div>
+              <div class="form-field full"><input id="medical" placeholder="Any Medical Condition / Allergy / Speech or Learning Need"></div>
+            </div>
+
+            <h3 style="color: var(--navy); border-bottom: 1.5px solid var(--gold); padding-bottom: 0.35rem; margin-top: 1.4rem; font-size: 1.08rem;">PARENT / GUARDIAN INFORMATION</h3>
+            <div class="form-grid">
+              <div class="form-field"><input id="fname" required placeholder="Father Name: *"></div>
+              <div class="form-field"><input id="fcnic" placeholder="Father CNIC No:"></div>
+              <div class="form-field"><input id="focc" placeholder="Father Occupation"></div>
+              <div class="form-field"><input id="fmobile" placeholder="Father Mobile No:"></div>
+              <div class="form-field"><input id="whatsapp" required placeholder="Active WhatsApp No: *"></div>
+              <div class="form-field"><input id="mname" placeholder="Mother Name:"></div>
+              <div class="form-field"><input id="mcnic" placeholder="Mother CNIC No:"></div>
+              <div class="form-field"><input id="mocc" placeholder="Mother Occupation"></div>
+              <div class="form-field"><input id="mmobile" placeholder="Mother Mobile No:"></div>
+              <div class="form-field"><input id="email" type="email" placeholder="Parents Email Address (for reports)"></div>
+              <div class="form-field full"><input id="guardian" placeholder="Guardian Name (if other than parents)"></div>
+              <div class="form-field full"><input id="address" required placeholder="Home Address: *"></div>
+              <div class="form-field"><input id="emgname" placeholder="Emergency Contact Name:"></div>
+              <div class="form-field"><input id="emgrel" placeholder="Relation:"></div>
+              <div class="form-field"><input id="emgphone" placeholder="Emergency Phone:"></div>
+            </div>
+
+            <h3 style="color: var(--navy); border-bottom: 1.5px solid var(--gold); padding-bottom: 0.35rem; margin-top: 1.4rem; font-size: 1.08rem;">PREVIOUS SCHOOLING</h3>
+            <div style="font-size: 0.92rem; margin-bottom: 0.75rem; display: flex; gap: 1.25rem; flex-wrap: wrap;">
+              <label><input type="radio" name="prev" value="First Admission"> First Admission (no previous school)</label>
+              <label><input type="radio" name="prev" value="Previously attended"> Previously attended another school</label>
+            </div>
+            <div class="form-grid">
+              <div class="form-field"><input id="lastschool" placeholder="Last School Attended"></div>
+              <div class="form-field"><input id="lastclass" placeholder="Last Class Passed"></div>
+              <div class="form-field"><input id="grade" placeholder="Result / Grade"></div>
+              <div class="form-field"><input id="reason" placeholder="Reason for Leaving"></div>
+            </div>
+
+            <h3 style="color: var(--navy); border-bottom: 1.5px solid var(--gold); padding-bottom: 0.35rem; margin-top: 1.4rem; font-size: 1.08rem;">DOCUMENTS REQUIRED (ATTACH COPIES)</h3>
+            <div style="font-size: 0.9rem; line-height: 1.9; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.25rem 1rem;">
+              <label><input type="checkbox" class="doc"> Copy of B-Form / Birth Certificate</label>
+              <label><input type="checkbox" class="doc"> Copy of Father's CNIC</label>
+              <label><input type="checkbox" class="doc"> Copy of Mother's CNIC</label>
+              <label><input type="checkbox" class="doc"> 4 Passport-size Photographs</label>
+              <label><input type="checkbox" class="doc"> Previous School Report Card / Result</label>
+              <label><input type="checkbox" class="doc"> School Leaving Certificate (if applicable)</label>
+            </div>
+
+            <h3 style="color: var(--navy); border-bottom: 1.5px solid var(--gold); padding-bottom: 0.35rem; margin-top: 1.4rem; font-size: 1.08rem;">DECLARATION</h3>
+            <p style="font-size: 0.86rem; color: var(--muted); line-height: 1.6;">
+              I declare that the information given above is true and correct to the best of my knowledge. I agree to follow the rules and regulations of SHINING STAR'S PRESCHOOL SPEECH &amp; HOPE, and to pay the school fee regularly and on time.
+            </p>
+            <div class="form-grid">
+              <div class="form-field"><input id="sign" placeholder="Parent / Guardian Name (Digital Signature)"></div>
+              <div class="form-field"><input type="date" id="signdate" aria-label="Signature Date"></div>
+            </div>
+
+            <div style="border: 1.5px dashed var(--sky); padding: 0.9rem 1.1rem; margin-top: 1.25rem; border-radius: 12px; background: var(--sky-soft);">
+              <h4 style="margin: 0 0 0.25rem; color: var(--navy); font-size: 0.95rem;">FOR OFFICE USE ONLY</h4>
+              <p style="font-size: 0.82rem; color: var(--muted); margin: 0;">To be completed by the school admissions office upon verification.</p>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%; padding: 1rem; margin-top: 1.35rem; background: #25D366; color: #FFFFFF; font-size: 1.05rem;">
+              📲 Submit Admission Form on WhatsApp (0347-9912072) ✅
+            </button>
+            <p style="text-align: center; font-size: 0.82rem; color: var(--muted); margin: 0.5rem 0 0;">
+              Clicking submit opens WhatsApp with your completed admission form ready to send to 0347-9912072.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function sendFullForm(e) {
+        e.preventDefault();
+        function v(id) {
+          var el = document.getElementById(id);
+          return encodeURIComponent((el && el.value) ? el.value : '-');
+        }
+        var prev = '-';
+        var r = document.querySelector('input[name="prev"]:checked');
+        if (r) prev = r.value;
+        var msg = "🎓 *NEW ADMISSION - SHINING STAR'S PRESCHOOL SPEECH & HOPE*%0A%0A" +
+          "*STUDENT*%0AName: " + v('sname') + "%0AClass: " + v('sclass') + "%0ADOB: " + v('dob') + "%0AAge: " + v('age') + "%0AGender: " + v('gender') + "%0ABlood: " + v('blood') + "%0AB-Form: " + v('bform') + "%0AReligion: " + v('religion') + "%0ANationality: " + v('nationality') + "%0AMother Tongue: " + v('tongue') + "%0AMedical: " + v('medical') + "%0A%0A" +
+          "*PARENTS*%0AFather: " + v('fname') + "%0AFather CNIC: " + v('fcnic') + "%0AFather Occ: " + v('focc') + "%0AFather Mobile: " + v('fmobile') + "%0AWhatsApp: " + v('whatsapp') + "%0AMother: " + v('mname') + "%0AMother CNIC: " + v('mcnic') + "%0AMother Occ: " + v('mocc') + "%0AMother Mobile: " + v('mmobile') + "%0AEmail: " + v('email') + "%0AGuardian: " + v('guardian') + "%0AAddress: " + v('address') + "%0A%0A" +
+          "*EMERGENCY*%0AContact: " + v('emgname') + "%0ARelation: " + v('emgrel') + "%0APhone: " + v('emgphone') + "%0A%0A" +
+          "*PREVIOUS*%0A" + encodeURIComponent(prev) + "%0ALast School: " + v('lastschool') + "%0ALast Class: " + v('lastclass') + "%0AGrade: " + v('grade') + "%0AReason: " + v('reason');
+        window.open("https://wa.me/923479912072?text=" + msg, "_blank", "noopener,noreferrer");
+      }
+    </script>
+
     <!-- Interactive Dual-Mode Booking & Application Form -->
     <section id="admissions-portal" class="section bg-sky-soft" data-tab-group>
       <div class="container">

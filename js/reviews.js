@@ -244,6 +244,26 @@
           suggestions: String(data.get('suggestions') || '').trim()
         };
 
+        const waLines = [
+          '*New Parent Review — Shining Stars Pre School & Academy*',
+          `*Ref:* #${refCode}`,
+          `*Parent:* ${payload.parent_name}`,
+          `*Program:* ${payload.child_program}`,
+          `*School Progress Rating:* ${renderStars(payload.progress_stars)} (${payload.progress_stars}/5)`,
+          `*Phone:* ${payload.phone}`,
+          `*Email:* ${payload.email}`,
+          `*Review:* ${payload.review_text}`
+        ];
+        if (payload.suggestions) {
+          waLines.push(`*Suggestions for Improvement:* ${payload.suggestions}`);
+        }
+        const whatsappUrl = `https://wa.me/923479912072?text=${encodeURIComponent(waLines.join('\n'))}`;
+
+        // Automatically open WhatsApp forwarding to 0347-9912072 within the click gesture
+        try {
+          window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        } catch (_) {}
+
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.textContent = 'Submitting Review...';
@@ -266,7 +286,26 @@
         });
 
         if (summaryEl) {
-          summaryEl.textContent = `Thank you, ${payload.parent_name}! Your ${payload.progress_stars}-star review for ${payload.child_program} and your suggestions for school improvement have been recorded (Reference #${refCode}). Your email (${payload.email}) and phone number (${payload.phone}) are kept private for Principal Iqra Azeem and our school leadership team.`;
+          summaryEl.textContent = `Thank you, ${payload.parent_name}! Your ${payload.progress_stars}-star review for ${payload.child_program} is now displayed on the website and forwarded to our WhatsApp (0347-9912072) under reference #${refCode}.`;
+        }
+
+        if (confirmBox) {
+          let waBtn = confirmBox.querySelector('[data-review-whatsapp]');
+          if (!waBtn) {
+            waBtn = document.createElement('a');
+            waBtn.setAttribute('data-review-whatsapp', '');
+            waBtn.className = 'btn btn-gold btn-sm';
+            waBtn.target = '_blank';
+            waBtn.rel = 'noopener noreferrer';
+            waBtn.style.marginRight = '0.5rem';
+            waBtn.textContent = '📲 Send on WhatsApp (0347-9912072)';
+            if (resetBtn) {
+              resetBtn.insertAdjacentElement('beforebegin', waBtn);
+            } else {
+              confirmBox.appendChild(waBtn);
+            }
+          }
+          waBtn.href = whatsappUrl;
         }
 
         form.style.display = 'none';

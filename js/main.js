@@ -11,7 +11,44 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaqAccordion();
   initAdmissionsForm();
   initNewsletterForm();
+  initPrincipalSlideshow();
 });
+
+function initPrincipalSlideshow() {
+  const shows = document.querySelectorAll('[data-principal-slideshow]');
+  shows.forEach((show) => {
+    const slides = Array.from(show.querySelectorAll('.principal-slide'));
+    const dots = Array.from(show.querySelectorAll('.principal-dot'));
+    if (slides.length <= 1) return;
+
+    const intervalMs = Number(show.getAttribute('data-interval-ms')) || 45000;
+    let current = 0;
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+      dots.forEach((dot, i) => {
+        const active = i === current;
+        dot.classList.toggle('active', active);
+        dot.setAttribute('aria-pressed', String(active));
+      });
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goTo(idx);
+        restartTimer();
+      });
+    });
+
+    let timerId = setInterval(() => goTo(current + 1), intervalMs);
+
+    function restartTimer() {
+      clearInterval(timerId);
+      timerId = setInterval(() => goTo(current + 1), intervalMs);
+    }
+  });
+}
 
 function initHeader() {
   const header = document.querySelector('.site-header');

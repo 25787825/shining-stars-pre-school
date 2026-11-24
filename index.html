@@ -60,165 +60,7 @@
     </div>
   </header>
 
-  <main>  
-    <!-- SSP SPEECH & HOPE Main Section -->
-    <section id="ssp-speech-hope" class="section ssp-section">
-      <div class="container">
-        <div class="section-header centered">
-          <img class="ssp-crest-emblem" src="assets/images/ssp-logo.jpg" alt="SSP Speech &amp; Hope Official Crest">
-          <span class="eyebrow coral">Inclusive Child &amp; Family Support</span>
-          <h2>SSP SPEECH &amp; HOPE</h2>
-          <p>Specialized therapy, special education, and parent guidance—click any category card to explore its dedicated program page.</p>
-        </div>
-
-        <div class="ssp-grid" data-ssp-cards></div>
-
-        <div style="text-align: center; margin-top: 2.25rem; display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap;">
-          <a class="btn btn-primary" href="ssp-speech-hope.html">Explore SSP Speech &amp; Hope Hub</a>
-          <a class="btn btn-outline" href="admissions.html#admissions-portal">Book a Specialist Consultation</a>
-        </div>
-      </div>
-    </section> 
-   <!-- ADMISSION FORM - SAME AS PAPER FORM -->
-<section id="admission" style="padding:30px 12px; background:#f2f2f2; font-family:Arial, sans-serif;">
-<div style="max-width:800px; margin:auto; background:#fff; padding:25px; border:2px solid #1a237e; border-radius:12px;">
-
-<div style="display:flex; align-items:center; justify-content:space-between; border-bottom:2px solid #d4af37; padding-bottom:10px;">
-<div style="font-size:40px;">🛡️</div>
-<div style="text-align:center; flex:1;">
-<h2 style="margin:0; color:#1a237e; font-size:22px; line-height:1.2;">SHINING STAR'S PRESCHOOL<br>SPEECH & HOPE</h2>
-<p style="margin:2px 0; letter-spacing:3px; color:#666; font-size:12px;">ADMISSION FORM</p>
-</div>
-<div style="border:1px solid #999; width:70px; height:80px; text-align:center; font-size:11px; color:#777; padding-top:25px;">Paste Photo<br>Here</div>
-</div>
-
-<form onsubmit="sendFullForm(event)">
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin:15px 0;">
-<input id="formno" placeholder="Form No:" style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px;">
-<input id="fdate" type="date" style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px;">
-<input id="session" placeholder="Session:" style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px;">
-</div>
-
-<h3 style="color:#1a237e; border-bottom:1px solid #d4af37; padding-bottom:5px;">STUDENT INFORMATION</h3>
-<input id="sname" required placeholder="Student Name: *" style="width:100%; padding:11px; margin:5px 0; border:1px solid #ccc; border-radius:6px;">
-<div style="display:flex; gap:10px; flex-wrap:wrap;">
-<input id="sclass" required placeholder="Class Applied For: *" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="dob" type="date" placeholder="Date of Birth" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="age" type="number" placeholder="Age" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<select id="gender" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;"><option>Gender</option><option>Male</option><option>Female</option></select>
-<input id="blood" placeholder="Blood Group" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="bform" placeholder="B-Form / CNIC No:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<input id="religion" placeholder="Religion" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="nationality" placeholder="Nationality" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="tongue" placeholder="Mother Tongue" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-<input id="medical" placeholder="Any Medical Condition / Allergy" style="width:100%; padding:11px; margin-top:10px; border:1px solid #ccc; border-radius:6px;">
-
-<h3 style="color:#1a237e; border-bottom:1px solid #d4af37; padding-bottom:5px; margin-top:20px;">PARENT / GUARDIAN INFORMATION</h3>
-<div style="display:flex; gap:10px; flex-wrap:wrap;">
-<input id="fname" required placeholder="Father Name: *" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="fcnic" placeholder="Father CNIC No:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<input id="focc" placeholder="Father Occupation" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="fmobile" placeholder="Father Mobile No:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="whatsapp" required placeholder="WhatsApp No: *" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<input id="mname" placeholder="Mother Name:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="mcnic" placeholder="Mother CNIC No:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<input id="mocc" placeholder="Mother Occupation" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="mmobile" placeholder="Mother Mobile No:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-<input id="email" type="email" placeholder="Parents Email Address (Reports ke liye)" style="width:100%; padding:11px; margin-top:10px; border:1px solid #ccc; border-radius:6px;">
-<input id="guardian" placeholder="Guardian (if other than parents)" style="width:100%; padding:11px; margin-top:10px; border:1px solid #ccc; border-radius:6px;">
-<input id="address" required placeholder="Home Address: *" style="width:100%; padding:11px; margin-top:10px; border:1px solid #ccc; border-radius:6px;">
-
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<input id="emgname" placeholder="Emergency Contact:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="emgrel" placeholder="Relation:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="emgphone" placeholder="Emergency Phone:" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-
-<h3 style="color:#1a237e; border-bottom:1px solid #d4af37; padding-bottom:5px; margin-top:20px;">PREVIOUS SCHOOLING</h3>
-<label style="font-size:14px;"><input type="radio" name="prev" value="First Admission"> First Admission (no previous school)</label><br>
-<label style="font-size:14px;"><input type="radio" name="prev" value="Previously attended"> Previously attended another school</label>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<input id="lastschool" placeholder="Last School Attended" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="lastclass" placeholder="Last Class Passed" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<input id="grade" placeholder="Result / Grade" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input id="reason" placeholder="Reason for Leaving" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-
-<h3 style="color:#1a237e; border-bottom:1px solid #d4af37; padding-bottom:5px; margin-top:20px;">DOCUMENTS REQUIRED (ATTACH COPIES)</h3>
-<div style="font-size:14px; line-height:1.9;">
-<label><input type="checkbox" class="doc"> Copy of B-Form / Birth Certificate</label><br>
-<label><input type="checkbox" class="doc"> Copy of Father's CNIC</label><br>
-<label><input type="checkbox" class="doc"> Copy of Mother's CNIC</label><br>
-<label><input type="checkbox" class="doc"> 4 Passport-size Photographs</label><br>
-<label><input type="checkbox" class="doc"> Previous School Report Card / Result</label><br>
-<label><input type="checkbox" class="doc"> School Leaving Certificate (if applicable)</label>
-</div>
-
-<h3 style="color:#1a237e; border-bottom:1px solid #d4af37; padding-bottom:5px; margin-top:20px;">DECLARATION</h3>
-<p style="font-size:13px; color:#444; line-height:1.6;">I declare that the information given above is true and correct to the best of my knowledge. I agree to follow the rules and regulations of SHINING STAR'S PRESCHOOL SPEECH & HOPE, and to pay the school fee regularly and on time.</p>
-<div style="display:flex; gap:20px; margin-top:15px;">
-<input id="sign" placeholder="Signature of Parent / Guardian" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-<input type="date" id="signdate" style="flex:1; padding:11px; border:1px solid #ccc; border-radius:6px;">
-</div>
-
-<div style="border:1px dashed #1a237e; padding:15px; margin-top:20px; border-radius:8px; background:#f8f9ff;">
-<h4 style="margin:0 0 10px; color:#1a237e;">FOR OFFICE USE ONLY</h4>
-<p style="font-size:12px; color:#888; margin:0;">Ye hissa school khud bharega, parents ko bharne ki zaroorat nahi.</p>
-</div>
-
-<button type="submit" style="width:100%; padding:16px; margin-top:20px; background:#25D366; color:#fff; border:none; border-radius:10px; font-size:18px; font-weight:bold; cursor:pointer;">WhatsApp par Admission Bhejen ✅</button>
-<p style="text-align:center; font-size:13px; color:#777;">Submit dabate hi WhatsApp khulega, bas Send dabana hai.</p>
-</form>
-</div>
-</section>
-
-<script>
-function sendFullForm(e){
-e.preventDefault();
-function v(id){return encodeURIComponent(document.getElementById(id).value||"-");}
-var prev=""; var r=document.querySelector('input[name="prev"]:checked'); if(r) prev=r.value;
-var msg="🎓 *NEW ADMISSION - SHINING STAR'S PRESCHOOL*%0A%0A"+
-"*STUDENT*%0AName: "+v('sname')+"%0AClass: "+v('sclass')+"%0ADOB: "+v('dob')+"%0AAge: "+v('age')+"%0AGender: "+v('gender')+"%0ABlood: "+v('blood')+"%0AB-Form: "+v('bform')+"%0AReligion: "+v('religion')+"%0ANationality: "+v('nationality')+"%0AMother Tongue: "+v('tongue')+"%0AMedical: "+v('medical')+"%0A%0A"+
-"*PARENTS*%0AFather: "+v('fname')+"%0AFather CNIC: "+v('fcnic')+"%0AFather Occ: "+v('focc')+"%0AFather Mobile: "+v('fmobile')+"%0AWhatsApp: "+v('whatsapp')+"%0AMother: "+v('mname')+"%0AMother CNIC: "+v('mcnic')+"%0AMother Occ: "+v('mocc')+"%0AMother Mobile: "+v('mmobile')+"%0AEmail: "+v('email')+"%0AGuardian: "+v('guardian')+"%0AAddress: "+v('address')+"%0A%0A"+
-"*EMERGENCY*%0AContact: "+v('emgname')+"%0ARelation: "+v('emgrel')+"%0APhone: "+v('emgphone')+"%0A%0A"+
-"*PREVIOUS*%0A"+encodeURIComponent(prev)+"%0ALast School: "+v('lastschool')+"%0ALast Class: "+v('lastclass')+"%0AGrade: "+v('grade')+"%0AReason: "+v('reason');
-window.open("https://wa.me/923479912072?text="+msg,"_blank");
-}
-</script>
-<!-- ADMISSION FORM END -->
-  </div>
-</section>
-
-<script>
-function sendToWhatsApp(e){
-  e.preventDefault();
-  var msg = "🎓 *NEW ADMISSION - Shining Star's School*%0A%0A" +
-  "*Student:* " + encodeURIComponent(document.getElementById('sname').value) + "%0A" +
-  "*Father:* " + encodeURIComponent(document.getElementById('fname').value) + "%0A" +
-  "*Class:* " + encodeURIComponent(document.getElementById('sclass').value) + "%0A" +
-  "*DOB:* " + encodeURIComponent(document.getElementById('dob').value) + "%0A" +
-  "*Parents WhatsApp:* " + encodeURIComponent(document.getElementById('phone').value) + "%0A" +
-  "*Parents Email:* " + encodeURIComponent(document.getElementById('email').value) + "%0A" +
-  "*Address:* " + encodeURIComponent(document.getElementById('address').value);
-  window.open("https://wa.me/923479912072?text=" + msg, "_blank");
-}
-</script>
-<!-- ADMISSION FORM END -->
-
+  <main>
     <!-- Hero Section -->
     <section class="hero">
       <div class="container hero-grid">
@@ -394,11 +236,39 @@ function sendToWhatsApp(e){
     </section>
 
   
+    <!-- SSP SPEECH & HOPE Main Section -->
+    <section id="ssp-speech-hope" class="section ssp-section">
+      <div class="container">
+        <div class="section-header centered">
+          <img class="ssp-crest-emblem" src="assets/images/ssp-logo.jpg" alt="SSP Speech &amp; Hope Official Crest">
+          <span class="eyebrow coral">Inclusive Child &amp; Family Support</span>
+          <h2>SSP SPEECH &amp; HOPE</h2>
+          <p>Specialized therapy, special education, and parent guidance—click any category card to explore its dedicated program page.</p>
+        </div>
+
+        <div class="ssp-grid" data-ssp-cards></div>
+
+        <div style="text-align: center; margin-top: 2.25rem; display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap;">
+          <a class="btn btn-primary" href="ssp-speech-hope.html">Explore SSP Speech &amp; Hope Hub</a>
+          <a class="btn btn-outline" href="admissions.html#admissions-portal">Book a Specialist Consultation</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Principal's Welcome & Campus Snapshot -->
     <section class="section bg-cream-warm">
       <div class="container spotlight">
-        <div class="spotlight-media">
-          <img src="assets/images/principal-library.jpg" alt="Principal Iqra Azeem smiling inside the bright Shining Stars school library">
+        <div class="principal-slideshow" data-principal-slideshow data-interval-ms="45000" aria-label="Principal Iqra Azeem Portrait Slideshow">
+          <img class="principal-slide active" src="assets/images/principal-1.jpg" alt="Principal Iqra Azeem — Founder SSP Speech &amp; Hope (Portrait 1)">
+          <img class="principal-slide" src="assets/images/principal-2.jpg" alt="Principal Iqra Azeem — Founder SSP Speech &amp; Hope (Portrait 2)">
+          <img class="principal-slide" src="assets/images/principal-3.jpg" alt="Principal Iqra Azeem — Founder SSP Speech &amp; Hope (Portrait 3)">
+          <img class="principal-slide" src="assets/images/principal-4.jpg" alt="Principal Iqra Azeem — Founder SSP Speech &amp; Hope (Portrait 4)">
+          <div class="principal-dots" role="group" aria-label="Select Principal Portrait">
+            <button class="principal-dot active" type="button" aria-label="Portrait 1" aria-pressed="true"></button>
+            <button class="principal-dot" type="button" aria-label="Portrait 2" aria-pressed="false"></button>
+            <button class="principal-dot" type="button" aria-label="Portrait 3" aria-pressed="false"></button>
+            <button class="principal-dot" type="button" aria-label="Portrait 4" aria-pressed="false"></button>
+          </div>
         </div>
         <div>
           <span class="eyebrow">Principal’s Welcome</span>
