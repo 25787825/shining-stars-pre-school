@@ -662,7 +662,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 18%;
+  object-position: 50% 4%;
   opacity: 0;
   transition: opacity 0.8s ease;
   pointer-events: none;
