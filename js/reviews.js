@@ -13,32 +13,7 @@
     1: '1 Star — Needs Immediate Attention'
   };
 
-  const SEED_REVIEWS = [
-    {
-      id: 'seed-1',
-      parent_name: 'Sarah & Tariq Mahmood',
-      child_program: 'Kindergarten (Ages 4–6)',
-      progress_stars: 5,
-      review_text: 'My daughter started in Playgroup feeling shy, and now in Kindergarten she reads bedtime stories aloud with so much pride. The teachers truly know and cherish her.',
-      created_at: '2026-11-10T09:00:00Z'
-    },
-    {
-      id: 'seed-2',
-      parent_name: 'Dr. Imran Siddiqui',
-      child_program: 'Primary Academy — Grade 3',
-      progress_stars: 5,
-      review_text: 'The jump from Preschool into Primary Academy Grade 1 was effortless. The robotics lab, small class size, and warm communication keep us completely reassured.',
-      created_at: '2026-11-08T11:30:00Z'
-    },
-    {
-      id: 'seed-3',
-      parent_name: 'Hira & Bilal Farooq',
-      child_program: 'SSP Speech & Hope',
-      progress_stars: 5,
-      review_text: 'The SSP Speech & Hope therapists have been a blessing for our son. His speech clarity and confidence in class improved tremendously within one term.',
-      created_at: '2026-11-04T14:15:00Z'
-    }
-  ];
+  const SEED_REVIEWS = [];
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -156,6 +131,15 @@
     walls.forEach((wall) => {
       const limit = Number(wall.getAttribute('data-limit') || 0);
       const list = limit > 0 ? reviews.slice(0, limit) : reviews;
+
+      if (!list.length) {
+        wall.innerHTML = `
+          <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+            <p style="color: var(--muted); margin-bottom: 0;">No parent reviews submitted yet. Be the first to rate our school progress and share your feedback!</p>
+          </div>
+        `;
+        return;
+      }
 
       wall.innerHTML = list.map((r) => `
         <article class="quote-card">

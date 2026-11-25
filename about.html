@@ -125,64 +125,50 @@
       </div>
     </section>
 
-    <!-- Filterable Faculty Directory -->
-    <section class="section" data-filter-group>
+    <!-- Dynamic Faculty Directory (Managed by Admin Only) -->
+    <section class="section">
       <div class="container">
         <div class="section-header">
           <span class="eyebrow sky">Meet Our Educators</span>
-          <h2>Dedicated, Certified &amp; Warm Faculty</h2>
-          <p>Every lead teacher holds early-childhood or primary teaching credentials plus annual child safety &amp; first-aid training.</p>
+          <h2>Expert Faculty</h2>
+          <p>Experienced, qualified educators dedicated to SLO-based excellence and student growth.</p>
+        </div>
+
+        <div class="grid-3" style="margin-bottom: 2rem;">
+          <article class="card">
+            <div class="avatar-badge sky">AH</div>
+            <h3>Abdul Hamad Dar</h3>
+            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">M.Sc Physics + M.A Education • 10 Years Experience</p>
+            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">Specializes in concept-based Physics, SLO-aligned exam preparation, and analytical problem solving.</p>
+          </article>
+
+          <article class="card">
+            <div class="avatar-badge gold">MM</div>
+            <h3>Muhammad Mujeeb ur Rehman</h3>
+            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">M.S HR + M.A Education • 10 Years Experience</p>
+            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">Guides academic mentoring, confidence building, and structured student assessment across academy classes.</p>
+          </article>
+
+          <article class="card">
+            <div class="avatar-badge coral">MU</div>
+            <h3>Muhammad Uzair Chohan</h3>
+            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">M.Phil English Literature + B.Ed • 10 Years Experience</p>
+            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">Leads English Literature, Spoken English (IELTS, Duolingo, TOEFL), and communication skills.</p>
+          </article>
         </div>
 
         <div class="filter-bar" role="group" aria-label="Filter faculty by team">
-          <button class="filter-btn active" type="button" data-filter-value="all">All Faculty</button>
-          <button class="filter-btn" type="button" data-filter-value="leadership">Leadership &amp; Care</button>
-          <button class="filter-btn" type="button" data-filter-value="preschool">Preschool Wing</button>
-          <button class="filter-btn" type="button" data-filter-value="primary">Primary Academy</button>
+          <button class="filter-btn active" type="button" data-faculty-filter="all">All Faculty</button>
+          <button class="filter-btn" type="button" data-faculty-filter="leadership">Leadership &amp; Care</button>
+          <button class="filter-btn" type="button" data-faculty-filter="preschool">Preschool Wing</button>
+          <button class="filter-btn" type="button" data-faculty-filter="primary">Primary Academy</button>
+          <button class="filter-btn" type="button" data-faculty-filter="ssp">SSP Speech &amp; Hope</button>
         </div>
 
-        <div class="grid-3">
-          <article class="card" data-category="leadership">
-            <div class="avatar-badge gold">IA</div>
-            <h3>Iqra Azeem</h3>
-            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">Founder - SSP Speech &amp; Hope | Certified Global Montessori Educator, ECE Specialist</p>
-            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">Leads curriculum vision, teacher mentoring, and family engagement across Pre-K through Grade 5.</p>
-          </article>
-
-          <article class="card" data-category="leadership">
-            <div class="avatar-badge sky">ZA</div>
-            <h3>Mr. Zayd Alvi</h3>
-            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">Academic Coordinator (Grades 1–5)</p>
-            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">Oversees primary math, literacy standards, and STEM lab integration with 12 years of elementary experience.</p>
-          </article>
-
-          <article class="card" data-category="preschool">
-            <div class="avatar-badge mint">MK</div>
-            <h3>Ms. Mariam Khan</h3>
-            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">Lead Montessori Directress (Playgroup &amp; Nursery)</p>
-            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">AMI-certified early years specialist passionate about gentle transitions, sensory learning, and phonics.</p>
-          </article>
-
-          <article class="card" data-category="preschool">
-            <div class="avatar-badge coral">ER</div>
-            <h3>Mrs. Elena Rosario</h3>
-            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">Kindergarten Lead &amp; Literacy Coach</p>
-            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">Guides Kindergarteners into confident reading, storytelling, and joyful math readiness.</p>
-          </article>
-
-          <article class="card" data-category="primary">
-            <div class="avatar-badge sky">HS</div>
-            <h3>Ms. Hina Siddiqui</h3>
-            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">Primary STEM &amp; Robotics Lead</p>
-            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">Runs hands-on science experiments, coding clubs, and our annual Little Inventors Expo.</p>
-          </article>
-
-          <article class="card" data-category="leadership">
-            <div class="avatar-badge mint">DF</div>
-            <h3>Ms. Claire Bennett</h3>
-            <p style="color: var(--sky-dark); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">Student Wellbeing &amp; Campus Nurse</p>
-            <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 0;">Pediatric RN managing campus health, allergy-aware snack protocols, and social-emotional support.</p>
-          </article>
+        <div id="faculty-grid" class="grid-3">
+          <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+            <p style="color: var(--muted); margin-bottom: 0;">Loading verified faculty members...</p>
+          </div>
         </div>
       </div>
     </section>
@@ -267,6 +253,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-client.js"></script>
+  <script src="js/faculty.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

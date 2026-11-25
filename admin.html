@@ -167,6 +167,10 @@
             <strong id="count-ssp">0</strong>
             <span>SSP Speech &amp; Hope</span>
           </div>
+          <div class="card admin-stat-card">
+            <strong id="count-faculty">0</strong>
+            <span>Faculty Members</span>
+          </div>
         </div>
 
         <!-- Tabs + Search -->
@@ -178,6 +182,7 @@
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-applications">Admissions Inquiries</button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-reviews">Parent Reviews</button>
             <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-ssp">SSP Speech &amp; Hope</button>
+            <button class="filter-btn" type="button" role="tab" aria-selected="false" data-tab-target="admin-faculty">Faculty Members</button>
           </div>
           <input id="admin-search-input" class="admin-search" type="search" placeholder="Search by name, email, or reference..." aria-label="Search records">
         </div>
@@ -402,6 +407,93 @@
               </thead>
               <tbody id="tbody-ssp">
                 <tr><td colspan="5">Loading SSP Speech &amp; Hope categories...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Faculty Members Manager (Admin Only) -->
+        <div class="tab-panel" data-tab-panel="admin-faculty">
+          <div class="admin-toolbar" style="margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="margin-bottom: 0.2rem;">Manage Faculty Members</h3>
+              <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0;">Only real staff added here appear on the public About &amp; Faculty page.</p>
+            </div>
+            <button id="faculty-new-btn" class="btn btn-primary btn-sm" type="button">+ Add Faculty Member</button>
+          </div>
+
+          <div id="faculty-editor-card" class="form-card" style="display: none; margin-bottom: 1.75rem;">
+            <div class="admin-toolbar" style="margin-bottom: 1rem;">
+              <h3 id="faculty-editor-heading" style="margin-bottom: 0;">Add Faculty Member</h3>
+              <button id="faculty-editor-cancel" class="btn btn-outline btn-sm" type="button">Cancel</button>
+            </div>
+            <form id="faculty-editor-form" novalidate>
+              <input id="faculty-edit-id" type="hidden">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="faculty-name">Full Name *</label>
+                  <input id="faculty-name" type="text" placeholder="e.g., Ms. Ayesha Khan" required>
+                </div>
+                <div class="form-field">
+                  <label for="faculty-role">Role / Title *</label>
+                  <input id="faculty-role" type="text" placeholder="e.g., Montessori Teacher (Nursery)" required>
+                </div>
+                <div class="form-field">
+                  <label for="faculty-dept">Department *</label>
+                  <select id="faculty-dept">
+                    <option value="leadership">Leadership &amp; Care</option>
+                    <option value="preschool" selected>Preschool Wing</option>
+                    <option value="primary">Primary Academy</option>
+                    <option value="ssp">SSP Speech &amp; Hope</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="faculty-color">Badge Color</label>
+                  <select id="faculty-color">
+                    <option value="sky">Sky Blue</option>
+                    <option value="gold">Sunny Gold</option>
+                    <option value="coral">Warm Coral</option>
+                    <option value="mint">Mint Leaf</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="faculty-initials">Initials (optional)</label>
+                  <input id="faculty-initials" type="text" maxlength="4" placeholder="Auto from name">
+                </div>
+                <div class="form-field">
+                  <label for="faculty-order">Display Order</label>
+                  <input id="faculty-order" type="number" min="1" value="10">
+                </div>
+                <div class="form-field full">
+                  <label for="faculty-bio">Short Bio (optional)</label>
+                  <textarea id="faculty-bio" rows="2" placeholder="Qualifications, experience, or focus area..."></textarea>
+                </div>
+                <div class="form-field full">
+                  <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input id="faculty-active" type="checkbox" checked style="width: auto;">
+                    <span>Show on Public Website</span>
+                  </label>
+                </div>
+              </div>
+              <div style="margin-top: 1.25rem;">
+                <button class="btn btn-sky" type="submit">Save Faculty Member</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Name &amp; Role</th>
+                  <th>Department</th>
+                  <th>Visibility</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-faculty">
+                <tr><td colspan="5">Loading faculty members...</td></tr>
               </tbody>
             </table>
           </div>

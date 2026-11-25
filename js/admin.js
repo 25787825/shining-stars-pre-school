@@ -62,7 +62,8 @@ async function initAdminPortal() {
     tours: [],
     applications: [],
     reviews: [],
-    sspCategories: []
+    sspCategories: [],
+    faculty: []
   };
 
   function showNotice(msg, isError) {
@@ -92,7 +93,8 @@ async function initAdminPortal() {
       'count-tours': state.tours.length,
       'count-applications': state.applications.length,
       'count-reviews': state.reviews.length,
-      'count-ssp': state.sspCategories.length
+      'count-ssp': state.sspCategories.length,
+      'count-faculty': state.faculty.length
     };
     Object.entries(map).forEach(([id, count]) => {
       const el = document.getElementById(id);
@@ -303,6 +305,74 @@ async function initAdminPortal() {
         });
       });
     }
+
+    // 7. Faculty Members (Admin Only)
+    const facBody = document.getElementById('tbody-faculty');
+    if (facBody) {
+      const rows = state.faculty.filter((r) => matchesQuery(r, query));
+      facBody.innerHTML = rows.length
+        ? rows.map((r) => `
+            <tr>
+              <td><strong>#${escapeHtml(r.sort_order)}</strong></td>
+              <td>
+                <strong>${escapeHtml(r.full_name)}</strong><br>
+                <small style="color:var(--muted);">${escapeHtml(r.role_title)}</small>
+              </td>
+              <td><span class="status-badge">${escapeHtml(r.department)}</span></td>
+              <td>
+                <span class="status-badge ${r.is_active ? 'confirmed' : 'archived'}">${r.is_active ? 'Visible' : 'Hidden'}</span>
+              </td>
+              <td>
+                <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
+                  <button class="btn btn-outline btn-sm" type="button" data-faculty-edit="${r.id}">Edit</button>
+                  <button class="btn btn-outline btn-sm" type="button" data-faculty-delete="${r.id}" style="color:#C94B3B; border-color:#EE6A59;">Remove</button>
+                </div>
+              </td>
+            </tr>
+          `).join('')
+        : '<tr><td colspan="5">No extra faculty members added yet. Click "+ Add Faculty Member" above.</td></tr>';
+
+      facBody.querySelectorAll('[data-faculty-edit]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = Number(btn.getAttribute('data-faculty-edit'));
+          const member = state.faculty.find((m) => m.id === id);
+          if (member) openFacultyEditor(member);
+        });
+      });
+
+      facBody.querySelectorAll('[data-faculty-delete]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const id = Number(btn.getAttribute('data-faculty-delete'));
+          const member = state.faculty.find((m) => m.id === id);
+          if (!member || !window.confirm(`Remove "${member.full_name}" from Faculty?`)) return;
+          const { error } = await sb.from('faculty_members').delete().eq('id', id);
+          if (error) {
+            showNotice(`Could not remove faculty member: ${error.message}`, true);
+            return;
+          }
+          showNotice(`Removed "${member.full_name}".`, false);
+          await loadAllData();
+        });
+      });
+    }
+  }
+
+  function openFacultyEditor(member) {
+    const card = document.getElementById('faculty-editor-card');
+    const heading = document.getElementById('faculty-editor-heading');
+    if (!card) return;
+    document.getElementById('faculty-edit-id').value = member ? String(member.id) : '';
+    document.getElementById('faculty-name').value = member?.full_name || '';
+    document.getElementById('faculty-role').value = member?.role_title || '';
+    document.getElementById('faculty-dept').value = member?.department || 'preschool';
+    document.getElementById('faculty-color').value = member?.badge_color || 'sky';
+    document.getElementById('faculty-initials').value = member?.initials || '';
+    document.getElementById('faculty-order').value = String(member?.sort_order ?? (state.faculty.length + 1));
+    document.getElementById('faculty-bio').value = member?.bio || '';
+    document.getElementById('faculty-active').checked = member ? Boolean(member.is_active) : true;
+    if (heading) heading.textContent = member ? `Edit: ${member.full_name}` : 'Add Faculty Member';
+    card.style.display = 'block';
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function openSspEditor(cat) {
@@ -356,13 +426,14 @@ async function initAdminPortal() {
       return;
     }
 
-    const [subsRes, msgsRes, toursRes, appsRes, revsRes, sspRes] = await Promise.all([
+    const [subsRes, msgsRes, toursRes, appsRes, revsRes, sspRes, facRes] = await Promise.all([
       sb.from('newsletter_subscribers').select('*').order('subscribed_at', { ascending: false }),
       sb.from('contact_messages').select('*').order('created_at', { ascending: false }),
       sb.from('tour_bookings').select('*').order('created_at', { ascending: false }),
       sb.from('admissions_applications').select('*').order('created_at', { ascending: false }),
       sb.from('parent_reviews').select('*').order('created_at', { ascending: false }),
-      sb.from('ssp_categories').select('*').order('sort_order', { ascending: true }).order('id', { ascending: true })
+      sb.from('ssp_categories').select('*').order('sort_order', { ascending: true }).order('id', { ascending: true }),
+      sb.from('faculty_members').select('*').order('sort_order', { ascending: true }).order('id', { ascending: true })
     ]);
 
     const firstError = subsRes.error || msgsRes.error || toursRes.error || appsRes.error;
@@ -381,6 +452,10 @@ async function initAdminPortal() {
     state.applications = appsRes.data || [];
     state.reviews = revsRes.data || [];
     state.sspCategories = sspRes.data || [];
+    state.faculty = facRes.data || [];
+    if (facRes.error) {
+      showNotice(`Faculty table note: ${facRes.error.message}. Run supabase/faculty-members.sql in Supabase SQL Editor.`, true);
+    }
     renderCounts();
     renderTables();
   }
@@ -650,6 +725,54 @@ async function initAdminPortal() {
   document.getElementById('ssp-editor-cancel')?.addEventListener('click', () => {
     if (sspEditorCard) sspEditorCard.style.display = 'none';
   });
+
+  // Faculty Editor Controls
+  const facEditorCard = document.getElementById('faculty-editor-card');
+  const facEditorForm = document.getElementById('faculty-editor-form');
+  document.getElementById('faculty-new-btn')?.addEventListener('click', () => openFacultyEditor(null));
+  document.getElementById('faculty-editor-cancel')?.addEventListener('click', () => {
+    if (facEditorCard) facEditorCard.style.display = 'none';
+  });
+
+  if (facEditorForm) {
+    facEditorForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const editId = document.getElementById('faculty-edit-id')?.value;
+      const fullName = String(document.getElementById('faculty-name')?.value || '').trim();
+      const roleTitle = String(document.getElementById('faculty-role')?.value || '').trim();
+      if (fullName.length < 2 || roleTitle.length < 2) {
+        showNotice('Please enter both Full Name and Role / Title.', true);
+        return;
+      }
+
+      const rawInitials = String(document.getElementById('faculty-initials')?.value || '').trim();
+      const autoInitials = fullName.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase() || 'SS';
+
+      const payload = {
+        full_name: fullName,
+        role_title: roleTitle,
+        department: document.getElementById('faculty-dept')?.value || 'preschool',
+        badge_color: document.getElementById('faculty-color')?.value || 'sky',
+        initials: (rawInitials || autoInitials).toUpperCase().slice(0, 4),
+        sort_order: Number(document.getElementById('faculty-order')?.value || 10),
+        bio: String(document.getElementById('faculty-bio')?.value || '').trim(),
+        is_active: Boolean(document.getElementById('faculty-active')?.checked)
+      };
+
+      const res = editId
+        ? await sb.from('faculty_members').update(payload).eq('id', Number(editId))
+        : await sb.from('faculty_members').insert([payload]);
+
+      if (res.error) {
+        showNotice(`Could not save faculty member: ${res.error.message}`, true);
+        return;
+      }
+
+      if (facEditorCard) facEditorCard.style.display = 'none';
+      showNotice(`Saved faculty member "${fullName}".`, false);
+      await loadAllData();
+    });
+  }
 
   document.getElementById('ssp-seed-btn')?.addEventListener('click', async () => {
     const defaults = (window.SSP_DEFAULT_CATEGORIES || []).map(({ id, ...rest }) => rest);
