@@ -104,8 +104,60 @@
               <p style="margin: 0.25rem 0 0; letter-spacing: 3px; color: var(--sky-dark); font-weight: 700; font-size: 0.78rem;">OFFICIAL ADMISSION FORM</p>
               <p style="margin: 0.15rem 0 0; color: var(--muted); font-size: 0.78rem;">DC Office Road, District Bhimber A.K. • 0347-9912072</p>
             </div>
-            <div style="border: 1.5px dashed var(--border); width: 74px; height: 84px; border-radius: 8px; text-align: center; font-size: 0.7rem; color: var(--muted); display: grid; place-items: center; padding: 4px;">Student<br>Photo</div>
+            <div style="text-align: center;">
+              <label for="student-photo" id="student-photo-box" title="Click to upload student photo (max 50 KB)" style="border: 1.5px dashed var(--sky); width: 84px; height: 96px; border-radius: 10px; text-align: center; font-size: 0.72rem; font-weight: 700; color: var(--sky-dark); display: grid; place-items: center; padding: 4px; cursor: pointer; overflow: hidden; background: var(--sky-soft);">
+                <span id="student-photo-placeholder">📷 Upload<br>Photo<br><small style="font-weight:500; color:var(--muted);">(Max 50 KB)</small></span>
+                <img id="student-photo-preview" src="" alt="Student Photo Preview" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+              </label>
+              <input id="student-photo" type="file" accept="image/*" style="display: none;">
+              <div id="student-photo-status" style="font-size: 0.7rem; margin-top: 4px; max-width: 110px; line-height: 1.25;"></div>
+            </div>
           </div>
+
+          <script>
+            (function initStudentPhotoUpload() {
+              var input = document.getElementById('student-photo');
+              var preview = document.getElementById('student-photo-preview');
+              var placeholder = document.getElementById('student-photo-placeholder');
+              var status = document.getElementById('student-photo-status');
+              if (!input) return;
+
+              input.addEventListener('change', function () {
+                var file = input.files && input.files[0];
+                if (!file) return;
+
+                if (!file.type.startsWith('image/')) {
+                  input.value = '';
+                  preview.style.display = 'none';
+                  placeholder.style.display = '';
+                  status.style.color = '#C94B3B';
+                  status.textContent = 'Please select an image file.';
+                  return;
+                }
+
+                var maxBytes = 50 * 1024; // 50 KB
+                var sizeKb = (file.size / 1024).toFixed(1);
+                if (file.size > maxBytes) {
+                  input.value = '';
+                  preview.style.display = 'none';
+                  placeholder.style.display = '';
+                  status.style.color = '#C94B3B';
+                  status.textContent = 'Max 50 KB allowed (' + sizeKb + ' KB selected).';
+                  return;
+                }
+
+                var reader = new FileReader();
+                reader.onload = function (ev) {
+                  preview.src = ev.target.result;
+                  preview.style.display = 'block';
+                  placeholder.style.display = 'none';
+                  status.style.color = '#166549';
+                  status.textContent = '✓ ' + sizeKb + ' KB';
+                };
+                reader.readAsDataURL(file);
+              });
+            })();
+          </script>
 
           <form onsubmit="sendFullForm(event)" style="margin-top: 1.25rem;">
             <div class="form-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
