@@ -246,9 +246,18 @@
               📲 Submit Admission Form on WhatsApp (0347-9912072) ✅
             </button>
             <p style="text-align: center; font-size: 0.82rem; color: var(--muted); margin: 0.5rem 0 0;">
-              Clicking submit opens WhatsApp with your completed admission form ready to send to 0347-9912072.
+              Clicking submit opens WhatsApp (+923479912072) and Email (sspspeechandhope@gmail.com) with your complete admission form.
             </p>
           </form>
+
+          <div id="admission-share-confirm" class="confirmation-box" style="margin-top: 1.25rem;" aria-live="polite">
+            <h3 style="color: #166549; margin-bottom: 0.45rem;">★ Admission Form Ready &amp; Shared!</h3>
+            <p style="margin-bottom: 0.9rem; color: var(--navy); font-size: 0.94rem;">Your complete admission form has been prepared for WhatsApp (<strong>+923479912072</strong>) and Email (<strong>sspspeechandhope@gmail.com</strong>). Use the buttons below if your browser blocked a popup:</p>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a id="admission-wa-link" class="btn btn-sm" style="background: #25D366; color: #FFFFFF;" target="_blank" rel="noopener noreferrer">📲 Open WhatsApp (+923479912072)</a>
+              <a id="admission-email-link" class="btn btn-sky btn-sm">✉ Open Email (sspspeechandhope@gmail.com)</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -256,19 +265,71 @@
     <script>
       function sendFullForm(e) {
         e.preventDefault();
-        function v(id) {
+        function raw(id) {
           var el = document.getElementById(id);
-          return encodeURIComponent((el && el.value) ? el.value : '-');
+          return (el && el.value) ? el.value.trim() : '-';
         }
         var prev = '-';
         var r = document.querySelector('input[name="prev"]:checked');
         if (r) prev = r.value;
-        var msg = "🎓 *NEW ADMISSION - SHINING STAR'S PRESCHOOL SPEECH & HOPE*%0A%0A" +
-          "*STUDENT*%0AName: " + v('sname') + "%0AClass: " + v('sclass') + "%0ADOB: " + v('dob') + "%0AAge: " + v('age') + "%0AGender: " + v('gender') + "%0ABlood: " + v('blood') + "%0AB-Form: " + v('bform') + "%0AReligion: " + v('religion') + "%0ANationality: " + v('nationality') + "%0AMother Tongue: " + v('tongue') + "%0AMedical: " + v('medical') + "%0A%0A" +
-          "*PARENTS*%0AFather: " + v('fname') + "%0AFather CNIC: " + v('fcnic') + "%0AFather Occ: " + v('focc') + "%0AFather Mobile: " + v('fmobile') + "%0AWhatsApp: " + v('whatsapp') + "%0AMother: " + v('mname') + "%0AMother CNIC: " + v('mcnic') + "%0AMother Occ: " + v('mocc') + "%0AMother Mobile: " + v('mmobile') + "%0AEmail: " + v('email') + "%0AGuardian: " + v('guardian') + "%0AAddress: " + v('address') + "%0A%0A" +
-          "*EMERGENCY*%0AContact: " + v('emgname') + "%0ARelation: " + v('emgrel') + "%0APhone: " + v('emgphone') + "%0A%0A" +
-          "*PREVIOUS*%0A" + encodeURIComponent(prev) + "%0ALast School: " + v('lastschool') + "%0ALast Class: " + v('lastclass') + "%0AGrade: " + v('grade') + "%0AReason: " + v('reason');
-        window.open("https://wa.me/923479912072?text=" + msg, "_blank", "noopener,noreferrer");
+
+        var checkedDocs = [];
+        document.querySelectorAll('#admission input.doc:checked').forEach(function (cb) {
+          if (cb.parentElement) checkedDocs.push(cb.parentElement.textContent.trim());
+        });
+
+        var photoInput = document.getElementById('student-photo');
+        var photoInfo = (photoInput && photoInput.files && photoInput.files[0])
+          ? 'Attached (' + photoInput.files[0].name + ', ' + (photoInput.files[0].size / 1024).toFixed(1) + ' KB)'
+          : 'Not attached';
+
+        var lines = [
+          "🎓 NEW ADMISSION - SHINING STAR'S PRESCHOOL SPEECH & HOPE",
+          "Form No: " + raw('formno') + " | Date: " + raw('fdate') + " | Session: " + raw('session'),
+          "Student Photo: " + photoInfo,
+          "",
+          "STUDENT INFORMATION",
+          "Name: " + raw('sname'),
+          "Class Applied For: " + raw('sclass'),
+          "DOB: " + raw('dob') + " | Age: " + raw('age') + " | Gender: " + raw('gender'),
+          "Blood Group: " + raw('blood') + " | B-Form/CNIC: " + raw('bform'),
+          "Religion: " + raw('religion') + " | Nationality: " + raw('nationality') + " | Mother Tongue: " + raw('tongue'),
+          "Medical / Allergy / Need: " + raw('medical'),
+          "",
+          "PARENT / GUARDIAN INFORMATION",
+          "Father: " + raw('fname') + " | CNIC: " + raw('fcnic'),
+          "Father Occupation: " + raw('focc') + " | Mobile: " + raw('fmobile'),
+          "WhatsApp: " + raw('whatsapp'),
+          "Mother: " + raw('mname') + " | CNIC: " + raw('mcnic'),
+          "Mother Occupation: " + raw('mocc') + " | Mobile: " + raw('mmobile'),
+          "Email: " + raw('email') + " | Guardian: " + raw('guardian'),
+          "Home Address: " + raw('address'),
+          "",
+          "EMERGENCY CONTACT",
+          "Contact: " + raw('emgname') + " | Relation: " + raw('emgrel') + " | Phone: " + raw('emgphone'),
+          "",
+          "PREVIOUS SCHOOLING",
+          "Status: " + prev + " | Last School: " + raw('lastschool') + " | Last Class: " + raw('lastclass'),
+          "Grade: " + raw('grade') + " | Reason: " + raw('reason'),
+          "",
+          "DOCUMENTS: " + (checkedDocs.length ? checkedDocs.join(', ') : 'None selected'),
+          "DECLARATION SIGNATURE: " + raw('sign') + " | Date: " + raw('signdate')
+        ];
+
+        var plainText = lines.join("\n");
+        var waUrl = "https://wa.me/923479912072?text=" + encodeURIComponent(plainText);
+        var mailSubject = "New Admission Form - " + raw('sname') + " (" + raw('sclass') + ")";
+        var mailUrl = "mailto:sspspeechandhope@gmail.com?subject=" + encodeURIComponent(mailSubject) + "&body=" + encodeURIComponent(plainText);
+
+        var waLink = document.getElementById('admission-wa-link');
+        var emailLink = document.getElementById('admission-email-link');
+        var confirmBox = document.getElementById('admission-share-confirm');
+        if (waLink) waLink.href = waUrl;
+        if (emailLink) emailLink.href = mailUrl;
+        if (confirmBox) confirmBox.classList.add('visible');
+
+        window.open(waUrl, "_blank", "noopener,noreferrer");
+        window.location.href = mailUrl;
       }
     </script>
 
